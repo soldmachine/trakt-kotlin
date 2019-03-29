@@ -3,14 +3,21 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.uwetrottmann.trakt5</groupId>
-    <artifactId>trakt-java</artifactId>
+    <artifactId>trakt-kotlin</artifactId>
     <packaging>jar</packaging>
-    <version>6.1.1-SNAPSHOT</version>
+    <version>6.1.2</version>
 
     <name>trakt-java</name>
     <description>trakt-java is a retrofit2 based wrapper around the trakt API v2.</description>
     <url>https://github.com/UweTrottmann/trakt-java/</url>
     <inceptionYear>2013</inceptionYear>
+
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
