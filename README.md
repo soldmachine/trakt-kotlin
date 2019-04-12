@@ -88,3 +88,6 @@ See full [list of contributors](https://github.com/UweTrottmann/trakt-java/graph
 
 Except where noted otherwise, released into the [public domain](UNLICENSE).
 Do not just copy, make it better.
+
+
+https://jitpack.io/private#soldmachine/trakt-kotlin
