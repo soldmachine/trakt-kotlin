@@ -1,6 +1,6 @@
 package com.uwetrottmann.trakt5.enums
 
-enum class Type constructor(private val value: String) : TraktEnum {
+enum class Type constructor(private val value: String) {
 
     MOVIE("movie"),
     SHOW("show"),

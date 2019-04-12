@@ -1,6 +1,6 @@
 package com.uwetrottmann.trakt5.enums
 
-enum class HistoryType constructor(private val value: String) : TraktEnum {
+enum class HistoryType constructor(private val value: String) {
 
     MOVIES("movies"),
     SHOWS("shows"),

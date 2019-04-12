@@ -3,7 +3,7 @@ package com.uwetrottmann.trakt5.enums
 import java.util.HashMap
 import java.util.Locale
 
-enum class SortHow constructor(private val value: String) : TraktEnum {
+enum class SortHow constructor(private val value: String) {
     ASC("asc"),
     DESC("desc");
 

@@ -1,6 +1,6 @@
 package com.uwetrottmann.trakt5.enums
 
-enum class RatingsFilter constructor(private val value: String) : TraktEnum {
+enum class RatingsFilter constructor(private val value: String) {
     ALL(""),
     WEAKSAUCE("/1"),
     TERRIBLE("/2"),

@@ -1,6 +1,6 @@
 package com.uwetrottmann.trakt5.enums
 
-enum class IdType constructor(private val value: String) : TraktEnum {
+enum class IdType constructor(private val value: String) {
 
     TRAKT("trakt"),
     IMDB("imdb"),

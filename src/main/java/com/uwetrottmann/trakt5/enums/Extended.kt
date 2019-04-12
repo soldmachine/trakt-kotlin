@@ -5,7 +5,7 @@ package com.uwetrottmann.trakt5.enums
  * all you need to match locally cached items and includes the title, year, and ids. However, you can request different
  * extended levels of information.
  */
-enum class Extended constructor(private val value: String) : TraktEnum {
+enum class Extended constructor(private val value: String) {
 
     /** Complete info for an item.  */
     FULL("full"),

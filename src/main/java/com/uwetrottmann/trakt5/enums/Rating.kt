@@ -1,6 +1,6 @@
 package com.uwetrottmann.trakt5.enums
 
-enum class Rating constructor(var value: Int) : TraktEnum {
+enum class Rating constructor(var value: Int) {
 
     WEAKSAUCE(1),
     TERRIBLE(2),

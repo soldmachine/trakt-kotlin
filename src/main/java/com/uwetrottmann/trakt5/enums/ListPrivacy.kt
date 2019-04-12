@@ -2,7 +2,7 @@ package com.uwetrottmann.trakt5.enums
 
 import java.util.HashMap
 
-enum class ListPrivacy constructor(val value: String) : TraktEnum {
+enum class ListPrivacy constructor(val value: String) {
 
     PRIVATE("private"),
     FRIENDS("friends"),

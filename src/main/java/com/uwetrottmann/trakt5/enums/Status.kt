@@ -3,7 +3,7 @@ package com.uwetrottmann.trakt5.enums
 import java.util.HashMap
 import java.util.Locale
 
-enum class Status constructor(private val value: String) : TraktEnum {
+enum class Status constructor(private val value: String) {
 
     ENDED("ended"),
     RETURNING("returning series"),
