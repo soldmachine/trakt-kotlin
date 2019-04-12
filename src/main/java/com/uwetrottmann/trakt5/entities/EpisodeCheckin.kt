@@ -1,9 +1,9 @@
 package com.uwetrottmann.trakt5.entities
 
-class EpisodeCheckin : BaseCheckin() {
-
-    var show: Show? = null
+data class EpisodeCheckin(
+    var show: Show? = null,
     var episode: SyncEpisode? = null
+) : BaseCheckin() {
 
     class Builder(
         private val episode: SyncEpisode,

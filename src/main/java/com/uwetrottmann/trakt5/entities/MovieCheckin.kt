@@ -1,8 +1,8 @@
 package com.uwetrottmann.trakt5.entities
 
-class MovieCheckin : BaseCheckin() {
-
+data class MovieCheckin(
     var movie: SyncMovie? = null
+) : BaseCheckin() {
 
     class Builder(
         private val movie: SyncMovie,

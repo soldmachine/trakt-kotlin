@@ -79,12 +79,12 @@ public class CheckinTest extends BaseTestCase {
     private void assertEpisodeCheckin(EpisodeCheckinResponse response) {
         assertThat(response).isNotNull();
         // episode should be over in less than an hour
-        assertThat(response.watched_at.isBefore(OffsetDateTime.now().plusHours(1))).isTrue();
-        assertThat(response.episode).isNotNull();
-        assertThat(response.episode.ids).isNotNull();
-        assertThat(response.episode.ids.trakt).isEqualTo(TestData.EPISODE_TRAKT_ID);
-        assertThat(response.episode.ids.tvdb).isEqualTo(TestData.EPISODE_TVDB_ID);
-        assertThat(response.show).isNotNull();
+        assertThat(response.getWatched_at().isBefore(OffsetDateTime.now().plusHours(1))).isTrue();
+        assertThat(response.getEpisode()).isNotNull();
+        assertThat(response.getEpisode().ids).isNotNull();
+        assertThat(response.getEpisode().ids.trakt).isEqualTo(TestData.EPISODE_TRAKT_ID);
+        assertThat(response.getEpisode().ids.tvdb).isEqualTo(TestData.EPISODE_TVDB_ID);
+        assertThat(response.getShow()).isNotNull();
     }
 
     private static EpisodeCheckin buildEpisodeCheckin() {
@@ -112,8 +112,8 @@ public class CheckinTest extends BaseTestCase {
         MovieCheckinResponse response = executeCall(getTrakt().checkin().checkin(checkin));
         assertThat(response).isNotNull();
         // movie should be over in less than 3 hours
-        assertThat(response.watched_at.isBefore(OffsetDateTime.now().plusHours(3))).isTrue();
-        MoviesTest.assertTestMovie(response.movie);
+        assertThat(response.getWatched_at().isBefore(OffsetDateTime.now().plusHours(3))).isTrue();
+        MoviesTest.assertTestMovie(response.getMovie());
 
         test_checkin_delete();
     }
