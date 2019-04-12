@@ -19,10 +19,10 @@ public class PeopleTest extends BaseTestCase {
     public void test_summary() throws IOException {
         Person person = executeCall(getTrakt().people().summary(TEST_PERSON_SLUG, Extended.FULL));
         assertThat(person).isNotNull();
-        assertThat(person.name).isNotEmpty();
-        assertThat(person.ids).isNotNull();
-        assertThat(person.ids.getTrakt()).isNotNull();
-        assertThat(person.ids.getSlug()).isNotNull();
+        assertThat(person.getName()).isNotEmpty();
+        assertThat(person.getIds()).isNotNull();
+        assertThat(person.getIds().getTrakt()).isNotNull();
+        assertThat(person.getIds().getSlug()).isNotNull();
     }
 
     @Test

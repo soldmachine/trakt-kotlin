@@ -85,7 +85,7 @@ public class SyncTest extends BaseTestCase {
     @Test
     public void test_addItemsToCollection_movie() throws IOException {
         SyncMovie movie = new SyncMovie();
-        movie.ids = buildMovieIds();
+        movie.setIds(buildMovieIds());
 
         SyncItems items = new SyncItems().movies(movie);
         addItemsToCollection(items);
@@ -94,7 +94,7 @@ public class SyncTest extends BaseTestCase {
     @Test
     public void test_addItemsToCollection_show() throws IOException {
         SyncShow show = new SyncShow();
-        show.ids = buildShowIds();
+        show.setIds(buildShowIds());
 
         SyncItems items = new SyncItems().shows(show);
         addItemsToCollection(items);
@@ -104,13 +104,13 @@ public class SyncTest extends BaseTestCase {
     public void test_addItemsToCollection_season() throws IOException {
         // season
         SyncSeason season = new SyncSeason();
-        season.number = 1;
+        season.setNumber(1);
 
         // show
         SyncShow show = new SyncShow();
-        show.ids = ShowIds.Companion.slug("community");
-        show.seasons = new ArrayList<>();
-        show.seasons.add(season);
+        show.setIds(ShowIds.Companion.slug("community"));
+        show.setSeasons(new ArrayList<>());
+        show.getSeasons().add(season);
 
         SyncItems items = new SyncItems().shows(show);
         addItemsToCollection(items);
@@ -123,23 +123,23 @@ public class SyncTest extends BaseTestCase {
 
         // episodes
         SyncEpisode episode1 = new SyncEpisode();
-        episode1.number = 1;
+        episode1.setNumber(1);
         episode1.collectedAt(collectedAt);
         SyncEpisode episode2 = new SyncEpisode();
-        episode2.number = 2;
+        episode2.setNumber(2);
 
         // season
         SyncSeason season = new SyncSeason();
-        season.number = TestData.EPISODE_SEASON;
-        season.episodes = new ArrayList<>();
-        season.episodes.add(episode1);
-        season.episodes.add(episode2);
+        season.setNumber(TestData.EPISODE_SEASON);
+        season.setEpisodes(new ArrayList<>());
+        season.getEpisodes().add(episode1);
+        season.getEpisodes().add(episode2);
 
         // show
         SyncShow show = new SyncShow();
-        show.ids = ShowIds.Companion.tvdb(TestData.SHOW_TVDB_ID);
-        show.seasons = new ArrayList<>();
-        show.seasons.add(season);
+        show.setIds(ShowIds.Companion.tvdb(TestData.SHOW_TVDB_ID));
+        show.setSeasons(new ArrayList<>());
+        show.getSeasons().add(season);
 
         SyncItems items = new SyncItems().shows(show);
         addItemsToCollection(items);
@@ -151,12 +151,12 @@ public class SyncTest extends BaseTestCase {
     }
 
     private void assertSyncResponse(SyncResponse response) {
-        assertThat(response.added.movies).isNotNull();
-        assertThat(response.added.episodes).isNotNull();
-        assertThat(response.existing.movies).isNotNull();
-        assertThat(response.existing.episodes).isNotNull();
-        assertThat(response.not_found).isNotNull();
-        assertThat(response.deleted).isNull();
+        assertThat(response.getAdded().getMovies()).isNotNull();
+        assertThat(response.getAdded().getEpisodes()).isNotNull();
+        assertThat(response.getExisting().getMovies()).isNotNull();
+        assertThat(response.getExisting().getEpisodes()).isNotNull();
+        assertThat(response.getNot_found()).isNotNull();
+        assertThat(response.getDeleted()).isNull();
     }
 
     @Test
@@ -166,31 +166,31 @@ public class SyncTest extends BaseTestCase {
     }
 
     private void assertSyncResponseDelete(SyncResponse response) {
-        assertThat(response.deleted.movies).isNotNull();
-        assertThat(response.deleted.episodes).isNotNull();
-        assertThat(response.existing).isNull();
-        assertThat(response.not_found).isNotNull();
-        assertThat(response.added).isNull();
+        assertThat(response.getDeleted().getMovies()).isNotNull();
+        assertThat(response.getDeleted().getEpisodes()).isNotNull();
+        assertThat(response.getExisting()).isNull();
+        assertThat(response.getNot_found()).isNotNull();
+        assertThat(response.getAdded()).isNull();
     }
 
     private SyncItems buildItemsForDeletion() {
         // movie
         SyncMovie movie = new SyncMovie();
-        movie.ids = buildMovieIds();
+        movie.setIds(buildMovieIds());
 
         // episode
         SyncEpisode episode2 = new SyncEpisode();
-        episode2.number = 2;
+        episode2.setNumber(2);
 
         SyncSeason season = new SyncSeason();
-        season.number = TestData.EPISODE_SEASON;
-        season.episodes = new ArrayList<>();
-        season.episodes.add(episode2);
+        season.setNumber(TestData.EPISODE_SEASON);
+        season.setEpisodes(new ArrayList<>());
+        season.getEpisodes().add(episode2);
 
         SyncShow show = new SyncShow();
-        show.ids = ShowIds.Companion.tvdb(TestData.SHOW_TVDB_ID);
-        show.seasons = new ArrayList<>();
-        show.seasons.add(season);
+        show.setIds(ShowIds.Companion.tvdb(TestData.SHOW_TVDB_ID));
+        show.setSeasons(new ArrayList<>());
+        show.getSeasons().add(season);
 
         return new SyncItems().movies(movie).shows(show);
     }
@@ -211,37 +211,37 @@ public class SyncTest extends BaseTestCase {
     public void test_addItemsToWatchedHistory() throws IOException {
         // movie
         SyncMovie movie = new SyncMovie();
-        movie.watched_at = OffsetDateTime.now().minusHours(1);
-        movie.ids = buildMovieIds();
+        movie.setWatched_at(OffsetDateTime.now().minusHours(1));
+        movie.setIds(buildMovieIds());
 
         // episode
         SyncEpisode episode = new SyncEpisode();
-        episode.number = TestData.EPISODE_NUMBER;
-        episode.watched_at = OffsetDateTime.now().minusHours(1);
+        episode.setNumber(TestData.EPISODE_NUMBER);
+        episode.setWatched_at(OffsetDateTime.now().minusHours(1));
         SyncEpisode episode2 = new SyncEpisode();
-        episode2.number = 2;
-        episode2.watched_at = OffsetDateTime.now().minusMinutes(30);
+        episode2.setNumber(2);
+        episode2.setWatched_at(OffsetDateTime.now().minusMinutes(30));
         // season
         SyncSeason season = new SyncSeason();
-        season.number = TestData.EPISODE_SEASON;
-        season.episodes = new ArrayList<>();
-        season.episodes.add(episode);
-        season.episodes.add(episode2);
+        season.setNumber(TestData.EPISODE_SEASON);
+        season.setEpisodes(new ArrayList<>());
+        season.getEpisodes().add(episode);
+        season.getEpisodes().add(episode2);
         // show
         SyncShow show = new SyncShow();
-        show.ids = ShowIds.Companion.tvdb(TestData.SHOW_TVDB_ID);
-        show.seasons = new ArrayList<>();
-        show.seasons.add(season);
+        show.setIds(ShowIds.Companion.tvdb(TestData.SHOW_TVDB_ID));
+        show.setSeasons(new ArrayList<>());
+        show.getSeasons().add(season);
 
         SyncItems items = new SyncItems().movies(movie).shows(show);
 
         SyncResponse response = executeCall(getTrakt().sync().addItemsToWatchedHistory(items));
         assertThat(response).isNotNull();
-        assertThat(response.added.movies).isNotNull();
-        assertThat(response.added.episodes).isNotNull();
-        assertThat(response.existing).isNull();
-        assertThat(response.deleted).isNull();
-        assertThat(response.not_found).isNotNull();
+        assertThat(response.getAdded().getMovies()).isNotNull();
+        assertThat(response.getAdded().getEpisodes()).isNotNull();
+        assertThat(response.getExisting()).isNull();
+        assertThat(response.getDeleted()).isNull();
+        assertThat(response.getNot_found()).isNotNull();
     }
 
     @Test
@@ -250,11 +250,11 @@ public class SyncTest extends BaseTestCase {
 
         SyncResponse response = executeCall(getTrakt().sync().deleteItemsFromWatchedHistory(items));
         assertThat(response).isNotNull();
-        assertThat(response.deleted.movies).isNotNull();
-        assertThat(response.deleted.episodes).isNotNull();
-        assertThat(response.added).isNull();
-        assertThat(response.existing).isNull();
-        assertThat(response.not_found).isNotNull();
+        assertThat(response.getDeleted().getMovies()).isNotNull();
+        assertThat(response.getDeleted().getEpisodes()).isNotNull();
+        assertThat(response.getAdded()).isNull();
+        assertThat(response.getExisting()).isNull();
+        assertThat(response.getNot_found()).isNotNull();
     }
 
     @Test
@@ -361,13 +361,13 @@ public class SyncTest extends BaseTestCase {
 
         SyncResponse response = executeCall(getTrakt().sync().deleteRatings(items));
         assertThat(response).isNotNull();
-        assertThat(response.deleted.movies).isNotNull();
-        assertThat(response.deleted.shows).isNotNull();
-        assertThat(response.deleted.seasons).isNotNull();
-        assertThat(response.deleted.episodes).isNotNull();
-        assertThat(response.added).isNull();
-        assertThat(response.existing).isNull();
-        assertThat(response.not_found).isNotNull();
+        assertThat(response.getDeleted().getMovies()).isNotNull();
+        assertThat(response.getDeleted().getShows()).isNotNull();
+        assertThat(response.getDeleted().getSeasons()).isNotNull();
+        assertThat(response.getDeleted().getEpisodes()).isNotNull();
+        assertThat(response.getAdded()).isNull();
+        assertThat(response.getExisting()).isNull();
+        assertThat(response.getNot_found()).isNotNull();
     }
 
     @Test
@@ -391,9 +391,9 @@ public class SyncTest extends BaseTestCase {
         List<WatchlistedSeason> seasons = executeCall(getTrakt().sync().watchlistSeasons(null));
         assertThat(seasons).isNotNull();
         for (WatchlistedSeason season : seasons) {
-            assertThat(season.season).isNotNull();
-            assertThat(season.show).isNotNull();
-            assertThat(season.listed_at).isNotNull();
+            assertThat(season.getSeason()).isNotNull();
+            assertThat(season.getShow()).isNotNull();
+            assertThat(season.getListed_at()).isNotNull();
         }
     }
 
@@ -402,16 +402,16 @@ public class SyncTest extends BaseTestCase {
         List<WatchlistedEpisode> episodes = executeCall(getTrakt().sync().watchlistEpisodes(null));
         assertThat(episodes).isNotNull();
         for (WatchlistedEpisode episode : episodes) {
-            assertThat(episode.episode).isNotNull();
-            assertThat(episode.show).isNotNull();
-            assertThat(episode.listed_at).isNotNull();
+            assertThat(episode.getEpisode()).isNotNull();
+            assertThat(episode.getShow()).isNotNull();
+            assertThat(episode.getListed_at()).isNotNull();
         }
     }
 
     @Test
     public void test_addItemsToWatchlist_movie() throws IOException {
         SyncMovie movie = new SyncMovie();
-        movie.ids = buildMovieIds();
+        movie.setIds(buildMovieIds());
 
         SyncItems items = new SyncItems().movies(movie);
         addItemsToWatchlist(items);
@@ -420,7 +420,7 @@ public class SyncTest extends BaseTestCase {
     @Test
     public void test_addItemsToWatchlist_show() throws IOException {
         SyncShow show = new SyncShow();
-        show.ids = buildShowIds();
+        show.setIds(buildShowIds());
 
         SyncItems items = new SyncItems().shows(show);
         addItemsToWatchlist(items);
@@ -430,13 +430,13 @@ public class SyncTest extends BaseTestCase {
     public void test_addItemsToWatchlist_season() throws IOException {
         // season
         SyncSeason season = new SyncSeason();
-        season.number = 1;
+        season.setNumber(1);
 
         // show
         SyncShow show = new SyncShow();
-        show.ids = ShowIds.Companion.slug("community");
-        show.seasons = new ArrayList<>();
-        show.seasons.add(season);
+        show.setIds(ShowIds.Companion.slug("community"));
+        show.setSeasons(new ArrayList<>());
+        show.getSeasons().add(season);
 
         SyncItems items = new SyncItems().shows(show);
         addItemsToWatchlist(items);
@@ -446,20 +446,20 @@ public class SyncTest extends BaseTestCase {
     public void test_addItemsToWatchlist_episodes() throws IOException {
         // episode
         SyncEpisode episode1 = new SyncEpisode();
-        episode1.number = 1;
+        episode1.setNumber(1);
         SyncEpisode episode2 = new SyncEpisode();
-        episode2.number = 2;
+        episode2.setNumber(2);
         // season
         SyncSeason season = new SyncSeason();
-        season.number = TestData.EPISODE_SEASON;
-        season.episodes = new ArrayList<>();
-        season.episodes.add(episode1);
-        season.episodes.add(episode2);
+        season.setNumber(TestData.EPISODE_SEASON);
+        season.setEpisodes(new ArrayList<>());
+        season.getEpisodes().add(episode1);
+        season.getEpisodes().add(episode2);
         // show
         SyncShow show = new SyncShow();
-        show.ids = ShowIds.Companion.tvdb(TestData.SHOW_TVDB_ID);
-        show.seasons = new ArrayList<>();
-        show.seasons.add(season);
+        show.setIds(ShowIds.Companion.tvdb(TestData.SHOW_TVDB_ID));
+        show.setSeasons(new ArrayList<>());
+        show.getSeasons().add(season);
 
         SyncItems items = new SyncItems().shows(show);
         addItemsToWatchlist(items);

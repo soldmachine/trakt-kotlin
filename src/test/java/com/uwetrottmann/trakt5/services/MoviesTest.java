@@ -78,7 +78,7 @@ public class MoviesTest extends BaseTestCase {
         List<MovieTranslation> translations = executeCall(getTrakt().movies().translations("batman-begins-2005"));
         assertThat(translations).isNotNull();
         for (Translation translation : translations) {
-            assertThat(translation.language).isNotEmpty();
+            assertThat(translation.getLanguage()).isNotEmpty();
         }
     }
 
@@ -89,7 +89,7 @@ public class MoviesTest extends BaseTestCase {
         assertThat(translations).isNotNull();
         // we know that Batman Begins has a German translation, otherwise this test would fail
         assertThat(translations).hasSize(1);
-        assertThat(translations.get(0).language).isEqualTo("de");
+        assertThat(translations.get(0).getLanguage()).isEqualTo("de");
     }
 
     @Test

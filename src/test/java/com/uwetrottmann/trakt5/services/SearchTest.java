@@ -23,8 +23,8 @@ public class SearchTest extends BaseTestCase {
         assertThat(results).isNotNull();
         assertThat(results).isNotEmpty();
         for (SearchResult result : results) {
-            assertThat(result.score).isPositive();
-            assertThat(result.show).isNotNull();
+            assertThat(result.getScore()).isPositive();
+            assertThat(result.getShow()).isNotNull();
         }
     }
 
@@ -36,8 +36,8 @@ public class SearchTest extends BaseTestCase {
         assertThat(results).isNotNull();
         assertThat(results).isNotEmpty();
         for (SearchResult result : results) {
-            assertThat(result.score).isPositive();
-            assertThat(result.show).isNotNull();
+            assertThat(result.getScore()).isPositive();
+            assertThat(result.getShow()).isNotNull();
         }
     }
 
@@ -49,8 +49,8 @@ public class SearchTest extends BaseTestCase {
         assertThat(results).isNotNull();
         assertThat(results).isNotEmpty();
         for (SearchResult result : results) {
-            assertThat(result.score).isPositive();
-            assertThat(result.movie).isNotNull();
+            assertThat(result.getScore()).isPositive();
+            assertThat(result.getMovie()).isNotNull();
         }
     }
 
@@ -62,8 +62,8 @@ public class SearchTest extends BaseTestCase {
         assertThat(results).isNotNull();
         assertThat(results).isNotEmpty();
         for (SearchResult result : results) {
-            assertThat(result.score).isPositive();
-            assertThat(result.person).isNotNull();
+            assertThat(result.getScore()).isPositive();
+            assertThat(result.getPerson()).isNotNull();
         }
     }
 

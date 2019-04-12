@@ -54,22 +54,22 @@ public class UsersTest extends BaseTestCase {
     @Test
     public void test_getSettings() throws IOException {
         Settings settings = executeCall(getTrakt().users().settings());
-        assertThat(settings.user).isNotNull();
-        assertThat(settings.account).isNotNull();
-        assertThat(settings.connections).isNotNull();
-        assertThat(settings.sharing_text).isNotNull();
+        assertThat(settings.getUser()).isNotNull();
+        assertThat(settings.getAccount()).isNotNull();
+        assertThat(settings.getConnections()).isNotNull();
+        assertThat(settings.getSharing_text()).isNotNull();
     }
 
     @Test
     public void test_profile() throws IOException {
         User user = executeCall(getTrakt().users().profile(TestData.USER_SLUG, Extended.FULL));
-        assertThat(user.username).isEqualTo(TestData.USERNAME_STRING);
-        assertThat(user.isPrivate).isEqualTo(false);
-        assertThat(user.name).isEqualTo(TestData.USER_REAL_NAME);
-        assertThat(user.vip).isEqualTo(true);
-        assertThat(user.vip_ep).isEqualTo(true);
-        assertThat(user.ids.slug).isEqualTo(TestData.USERNAME_STRING);
-        assertThat(user.images.avatar.getFull()).isNotEmpty();
+        assertThat(user.getUsername()).isEqualTo(TestData.USERNAME_STRING);
+        assertThat(user.isPrivate()).isEqualTo(false);
+        assertThat(user.getName()).isEqualTo(TestData.USER_REAL_NAME);
+        assertThat(user.getVip()).isEqualTo(true);
+        assertThat(user.getVip_ep()).isEqualTo(true);
+        assertThat(user.getIds().getSlug()).isEqualTo(TestData.USERNAME_STRING);
+        assertThat(user.getImages().getAvatar().getFull()).isNotEmpty();
     }
 
     @Test
@@ -87,24 +87,24 @@ public class UsersTest extends BaseTestCase {
 
     @Test
     public void test_lists() throws IOException {
-        List<TraktList> lists = executeCall(getTrakt().users().lists(UserSlug.ME));
+        List<TraktList> lists = executeCall(getTrakt().users().lists(UserSlug.Companion.getME()));
         for (TraktList list : lists) {
             // ensure id and a title
-            assertThat(list.ids).isNotNull();
-            assertThat(list.ids.getTrakt()).isNotNull();
-            assertThat(list.name).isNotEmpty();
-            assertThat(list.description).isNotEmpty();
-            assertThat(list.privacy).isNotNull();
-            assertThat(list.display_numbers).isNotNull();
-            assertThat(list.allow_comments).isNotNull();
-            assertThat(list.sort_by).isNotNull();
-            assertThat(list.sort_how).isNotNull();
-            assertThat(list.created_at).isNotNull();
-            assertThat(list.updated_at).isNotNull();
-            assertThat(list.item_count).isPositive();
-            assertThat(list.comment_count).isGreaterThanOrEqualTo(0);
-            assertThat(list.likes).isGreaterThanOrEqualTo(0);
-            assertThat(list.user).isNotNull();
+            assertThat(list.getIds()).isNotNull();
+            assertThat(list.getIds().getTrakt()).isNotNull();
+            assertThat(list.getName()).isNotEmpty();
+            assertThat(list.getDescription()).isNotEmpty();
+            assertThat(list.getPrivacy()).isNotNull();
+            assertThat(list.getDisplay_numbers()).isNotNull();
+            assertThat(list.getAllow_comments()).isNotNull();
+            assertThat(list.getSort_by()).isNotNull();
+            assertThat(list.getSort_how()).isNotNull();
+            assertThat(list.getCreated_at()).isNotNull();
+            assertThat(list.getUpdated_at()).isNotNull();
+            assertThat(list.getItem_count()).isPositive();
+            assertThat(list.getComment_count()).isGreaterThanOrEqualTo(0);
+            assertThat(list.getLikes()).isGreaterThanOrEqualTo(0);
+            assertThat(list.getUser()).isNotNull();
         }
     }
 
@@ -118,14 +118,14 @@ public class UsersTest extends BaseTestCase {
         list.displayNumbers(false);
 
         // create list...
-        TraktList createdList = executeCall(getTrakt().users().createList(UserSlug.ME, list));
-        assertThat(createdList.ids.getTrakt()).isNotNull();
-        assertThat(createdList.name).isEqualTo(list.name);
-        assertThat(createdList.description).isEqualTo(list.description);
+        TraktList createdList = executeCall(getTrakt().users().createList(UserSlug.Companion.getME(), list));
+        assertThat(createdList.getIds().getTrakt()).isNotNull();
+        assertThat(createdList.getName()).isEqualTo(list.getName());
+        assertThat(createdList.getDescription()).isEqualTo(list.getDescription());
 
         // ...and delete it again
-        Response deleteResponse = getTrakt().users().deleteList(UserSlug.ME,
-                String.valueOf(createdList.ids.getTrakt())).execute();
+        Response deleteResponse = getTrakt().users().deleteList(UserSlug.Companion.getME(),
+                String.valueOf(createdList.getIds().getTrakt())).execute();
         assertSuccessfulResponse(deleteResponse);
         assertThat(deleteResponse.code()).isEqualTo(204);
     }
@@ -139,15 +139,15 @@ public class UsersTest extends BaseTestCase {
         list.name("trakt-java " + secondOfDay);
 
         // create list...
-        TraktList updatedList = executeCall(getTrakt().users().updateList(UserSlug.ME, String.valueOf(
+        TraktList updatedList = executeCall(getTrakt().users().updateList(UserSlug.Companion.getME(), String.valueOf(
                 TEST_LIST_WITH_ITEMS_TRAKT_ID), list));
-        assertThat(updatedList.ids.getTrakt()).isEqualTo(TEST_LIST_WITH_ITEMS_TRAKT_ID);
-        assertThat(updatedList.name).isEqualTo(list.name);
+        assertThat(updatedList.getIds().getTrakt()).isEqualTo(TEST_LIST_WITH_ITEMS_TRAKT_ID);
+        assertThat(updatedList.getName()).isEqualTo(list.getName());
     }
 
     @Test
     public void test_listItems() throws IOException {
-        List<ListEntry> entries = executeCall(getTrakt().users().listItems(UserSlug.ME,
+        List<ListEntry> entries = executeCall(getTrakt().users().listItems(UserSlug.Companion.getME(),
                 String.valueOf(TEST_LIST_WITH_ITEMS_TRAKT_ID),
                 null));
         for (ListEntry entry : entries) {
@@ -170,27 +170,27 @@ public class UsersTest extends BaseTestCase {
         items.people(person);
 
         // add items...
-        SyncResponse response = executeCall(getTrakt().users().addListItems(UserSlug.ME,
+        SyncResponse response = executeCall(getTrakt().users().addListItems(UserSlug.Companion.getME(),
                 String.valueOf(TEST_LIST_WITH_ITEMS_TRAKT_ID),
                 items));
 
-        assertThat(response.added.shows).isEqualTo(1);
-        assertThat(response.added.movies).isEqualTo(1);
-        assertThat(response.added.people).isEqualTo(1);
+        assertThat(response.getAdded().getShows()).isEqualTo(1);
+        assertThat(response.getAdded().getMovies()).isEqualTo(1);
+        assertThat(response.getAdded().getPeople()).isEqualTo(1);
 
         // ...and remove them again
         response = executeCall(
-                getTrakt().users().deleteListItems(UserSlug.ME, String.valueOf(TEST_LIST_WITH_ITEMS_TRAKT_ID),
+                getTrakt().users().deleteListItems(UserSlug.Companion.getME(), String.valueOf(TEST_LIST_WITH_ITEMS_TRAKT_ID),
                         items));
 
-        assertThat(response.deleted.shows).isEqualTo(1);
-        assertThat(response.deleted.movies).isEqualTo(1);
-        assertThat(response.deleted.people).isEqualTo(1);
+        assertThat(response.getDeleted().getShows()).isEqualTo(1);
+        assertThat(response.getDeleted().getMovies()).isEqualTo(1);
+        assertThat(response.getDeleted().getPeople()).isEqualTo(1);
     }
 
     @Test
     public void test_reorderListItems() throws IOException {
-        List<ListEntry> entries = executeCall(getTrakt().users().listItems(UserSlug.ME,
+        List<ListEntry> entries = executeCall(getTrakt().users().listItems(UserSlug.Companion.getME(),
                 String.valueOf(TEST_LIST_WITH_ITEMS_TRAKT_ID),
                 null));
 
@@ -201,7 +201,7 @@ public class UsersTest extends BaseTestCase {
         }
 
         ListReorderResponse response = executeCall(getTrakt().users().reorderListItems(
-                UserSlug.ME,
+                UserSlug.Companion.getME(),
                 String.valueOf(TEST_LIST_WITH_ITEMS_TRAKT_ID),
                 ListItemRank.Companion.from(newRank)
         ));
@@ -221,7 +221,7 @@ public class UsersTest extends BaseTestCase {
 
         // follow again
         Followed followedResponse = executeCall(getTrakt().users().follow(userToFollow));
-        assertThat(followedResponse.getUser().username).isEqualTo(TestData.USER_TO_FOLLOW);
+        assertThat(followedResponse.getUser().getUsername()).isEqualTo(TestData.USER_TO_FOLLOW);
     }
 
     @Test
@@ -292,7 +292,7 @@ public class UsersTest extends BaseTestCase {
     @Test
     public void test_historyMovies() throws IOException {
         List<HistoryEntry> history = executeCall(
-                getTrakt().users().history(UserSlug.ME, HistoryType.MOVIES, 1,
+                getTrakt().users().history(UserSlug.Companion.getME(), HistoryType.MOVIES, 1,
                         DEFAULT_PAGE_SIZE, null,
                         null, null));
         assertMovieHistory(history);
@@ -300,7 +300,7 @@ public class UsersTest extends BaseTestCase {
 
     @Test
     public void test_historyItem() throws IOException {
-        List<HistoryEntry> history = executeCall(getTrakt().users().history(UserSlug.ME, HistoryType.MOVIES,
+        List<HistoryEntry> history = executeCall(getTrakt().users().history(UserSlug.Companion.getME(), HistoryType.MOVIES,
                 TestData.MOVIE_WATCHED_TRAKT_ID, 1,
                 DEFAULT_PAGE_SIZE, null,
                 OffsetDateTime.of(2016, 8, 3, 9, 0, 0, 0, ZoneOffset.UTC),
@@ -363,14 +363,14 @@ public class UsersTest extends BaseTestCase {
 
     @Test
     public void test_watchlistMovies() throws IOException {
-        List<BaseMovie> movies = executeCall(getTrakt().users().watchlistMovies(UserSlug.ME,
+        List<BaseMovie> movies = executeCall(getTrakt().users().watchlistMovies(UserSlug.Companion.getME(),
                 null));
         assertSyncMovies(movies, "watchlist");
     }
 
     @Test
     public void test_watchlistShows() throws IOException {
-        List<BaseShow> shows = executeCall(getTrakt().users().watchlistShows(UserSlug.ME,
+        List<BaseShow> shows = executeCall(getTrakt().users().watchlistShows(UserSlug.Companion.getME(),
                 null));
         for (BaseShow show : shows) {
             assertThat(show.getShow()).isNotNull();
@@ -380,23 +380,23 @@ public class UsersTest extends BaseTestCase {
 
     @Test
     public void test_watchlistSeasons() throws IOException {
-        List<WatchlistedSeason> seasons = executeCall(getTrakt().users().watchlistSeasons(UserSlug.ME,
+        List<WatchlistedSeason> seasons = executeCall(getTrakt().users().watchlistSeasons(UserSlug.Companion.getME(),
                 null));
         for (WatchlistedSeason season : seasons) {
-            assertThat(season.season).isNotNull();
-            assertThat(season.show).isNotNull();
-            assertThat(season.listed_at).isNotNull();
+            assertThat(season.getSeason()).isNotNull();
+            assertThat(season.getShow()).isNotNull();
+            assertThat(season.getListed_at()).isNotNull();
         }
     }
 
     @Test
     public void test_watchlistEpisodes() throws IOException {
-        List<WatchlistedEpisode> episodes = executeCall(getTrakt().users().watchlistEpisodes(UserSlug.ME,
+        List<WatchlistedEpisode> episodes = executeCall(getTrakt().users().watchlistEpisodes(UserSlug.Companion.getME(),
                 null));
         for (WatchlistedEpisode episode : episodes) {
-            assertThat(episode.episode).isNotNull();
-            assertThat(episode.show).isNotNull();
-            assertThat(episode.listed_at).isNotNull();
+            assertThat(episode.getEpisode()).isNotNull();
+            assertThat(episode.getShow()).isNotNull();
+            assertThat(episode.getListed_at()).isNotNull();
         }
     }
 

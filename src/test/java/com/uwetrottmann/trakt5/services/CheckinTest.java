@@ -120,7 +120,7 @@ public class CheckinTest extends BaseTestCase {
 
     private MovieCheckin buildMovieCheckin() {
         ShareSettings shareSettings = new ShareSettings();
-        shareSettings.facebook = true;
+        shareSettings.setFacebook(true);
         return new MovieCheckin.Builder(new SyncMovie().id(MovieIds.Companion.trakt(TestData.MOVIE_TRAKT_ID)), APP_VERSION,
                 APP_DATE)
                 .message("This is a toasty movie!")

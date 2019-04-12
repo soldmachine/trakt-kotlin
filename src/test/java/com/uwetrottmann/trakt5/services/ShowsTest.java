@@ -82,7 +82,7 @@ public class ShowsTest extends BaseTestCase {
         List<Translation> translations = executeCall(getTrakt().shows().translations("breaking-bad"));
         assertThat(translations).isNotNull();
         for (Translation translation : translations) {
-            assertThat(translation.language).isNotEmpty();
+            assertThat(translation.getLanguage()).isNotEmpty();
         }
     }
 
@@ -92,7 +92,7 @@ public class ShowsTest extends BaseTestCase {
         // we know that Breaking Bad has a German translation, otherwise this test would fail
         assertThat(translations).isNotNull();
         assertThat(translations).hasSize(1);
-        assertThat(translations.get(0).language).isEqualTo("de");
+        assertThat(translations.get(0).getLanguage()).isEqualTo("de");
     }
 
     @Test

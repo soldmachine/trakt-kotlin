@@ -25,24 +25,24 @@ public class SeasonsTest extends BaseTestCase {
         for (Season season : seasons) {
             assertThat(season).isNotNull();
             // must have at least trakt and tvdb id
-            assertThat(season.ids.trakt).isPositive();
-            if (season.ids.tvdb != null) {
-                assertThat(season.ids.tvdb).isPositive();
+            assertThat(season.getIds().getTrakt()).isPositive();
+            if (season.getIds().getTvdb() != null) {
+                assertThat(season.getIds().getTvdb()).isPositive();
             }
-            assertThat(season.title).isNotNull();
-            assertThat(season.network).isNotNull();
+            assertThat(season.getTitle()).isNotNull();
+            assertThat(season.getNetwork()).isNotNull();
             // seasons start at 0 for specials
-            assertThat(season.number).isGreaterThanOrEqualTo(0);
-            assertThat(season.episode_count).isPositive();
-            assertThat(season.aired_episodes).isGreaterThanOrEqualTo(0);
-            assertThat(season.rating).isBetween(0.0, 10.0);
-            assertThat(season.votes).isGreaterThanOrEqualTo(0);
+            assertThat(season.getNumber()).isGreaterThanOrEqualTo(0);
+            assertThat(season.getEpisode_count()).isPositive();
+            assertThat(season.getAired_episodes()).isGreaterThanOrEqualTo(0);
+            assertThat(season.getRating()).isBetween(0.0, 10.0);
+            assertThat(season.getVotes()).isGreaterThanOrEqualTo(0);
             // episode details
-            if (season.number == TestData.EPISODE_SEASON) {
-                assertThat(season.episodes).isNotNull();
-                assertThat(season.episodes).isNotEmpty();
+            if (season.getNumber() == TestData.EPISODE_SEASON) {
+                assertThat(season.getEpisodes()).isNotNull();
+                assertThat(season.getEpisodes()).isNotEmpty();
                 Episode firstEp = null;
-                for (Episode episode : season.episodes) {
+                for (Episode episode : season.getEpisodes()) {
                     if (episode.getNumber() == TestData.EPISODE_NUMBER) {
                         firstEp = episode;
                         break;

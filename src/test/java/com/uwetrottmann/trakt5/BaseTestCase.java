@@ -105,8 +105,8 @@ public class BaseTestCase {
         } else {
             String message = "Request failed: " + response.code() + " " + response.message();
             TraktError error = getTrakt().checkForTraktError(response);
-            if (error != null && error.message != null) {
-                message += " message: " + error.message;
+            if (error != null && error.getMessage() != null) {
+                message += " message: " + error.getMessage();
             }
             fail(message);
         }
@@ -121,23 +121,23 @@ public class BaseTestCase {
 
     public void assertRatings(Ratings ratings) {
         // rating can be null, but we use a show where we can be sure it's rated
-        assertThat(ratings.rating).isGreaterThanOrEqualTo(0);
-        assertThat(ratings.votes).isGreaterThanOrEqualTo(0);
-        assertThat(ratings.distribution).hasSize(10);
+        assertThat(ratings.getRating()).isGreaterThanOrEqualTo(0);
+        assertThat(ratings.getVotes()).isGreaterThanOrEqualTo(0);
+        assertThat(ratings.getDistribution()).hasSize(10);
     }
 
     public void assertStats(Stats stats) {
-        assertThat(stats.watchers).isGreaterThanOrEqualTo(0);
-        assertThat(stats.plays).isGreaterThanOrEqualTo(0);
-        assertThat(stats.collectors).isGreaterThanOrEqualTo(0);
-        assertThat(stats.comments).isGreaterThanOrEqualTo(0);
-        assertThat(stats.lists).isGreaterThanOrEqualTo(0);
-        assertThat(stats.votes).isGreaterThanOrEqualTo(0);
+        assertThat(stats.getWatchers()).isGreaterThanOrEqualTo(0);
+        assertThat(stats.getPlays()).isGreaterThanOrEqualTo(0);
+        assertThat(stats.getCollectors()).isGreaterThanOrEqualTo(0);
+        assertThat(stats.getComments()).isGreaterThanOrEqualTo(0);
+        assertThat(stats.getLists()).isGreaterThanOrEqualTo(0);
+        assertThat(stats.getVotes()).isGreaterThanOrEqualTo(0);
     }
 
     public void assertShowStats(Stats stats) {
         assertStats(stats);
-        assertThat(stats.collected_episodes).isGreaterThanOrEqualTo(0);
+        assertThat(stats.getCollected_episodes()).isGreaterThanOrEqualTo(0);
     }
 
     protected static void assertSyncMovies(List<BaseMovie> movies, String type) {
