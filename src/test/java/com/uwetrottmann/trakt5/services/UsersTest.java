@@ -160,9 +160,9 @@ public class UsersTest extends BaseTestCase {
 
     @Test
     public void test_addListItems() throws IOException {
-        SyncShow show = new SyncShow().id(ShowIds.tvdb(256227));
-        SyncMovie movie = new SyncMovie().id(MovieIds.tmdb(TestData.MOVIE_TMDB_ID));
-        SyncPerson person = new SyncPerson().id(PersonIds.tmdb(TestData.PERSON_TMDB_ID));
+        SyncShow show = new SyncShow().id(ShowIds.Companion.tvdb(256227));
+        SyncMovie movie = new SyncMovie().id(MovieIds.Companion.tmdb(TestData.MOVIE_TMDB_ID));
+        SyncPerson person = new SyncPerson().id(PersonIds.Companion.tmdb(TestData.PERSON_TMDB_ID));
 
         SyncItems items = new SyncItems();
         items.shows(show);

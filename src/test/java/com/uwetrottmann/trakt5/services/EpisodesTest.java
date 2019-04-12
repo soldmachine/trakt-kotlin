@@ -23,9 +23,9 @@ public class EpisodesTest extends BaseTestCase {
         assertThat(episode.getTitle()).isEqualTo(TestData.EPISODE_TITLE);
         assertThat(episode.getSeason()).isEqualTo(TestData.EPISODE_SEASON);
         assertThat(episode.getNumber()).isEqualTo(TestData.EPISODE_NUMBER);
-        assertThat(episode.getIds().imdb).isEqualTo(TestData.EPISODE_IMDB_ID);
-        assertThat(episode.getIds().tmdb).isEqualTo(TestData.EPISODE_TMDB_ID);
-        assertThat(episode.getIds().tvdb).isEqualTo(TestData.EPISODE_TVDB_ID);
+        assertThat(episode.getIds().getImdb()).isEqualTo(TestData.EPISODE_IMDB_ID);
+        assertThat(episode.getIds().getTmdb()).isEqualTo(TestData.EPISODE_TMDB_ID);
+        assertThat(episode.getIds().getTvdb()).isEqualTo(TestData.EPISODE_TVDB_ID);
         assertThat(episode.getRuntime()).isGreaterThan(0);
         assertThat(episode.getComment_count()).isGreaterThanOrEqualTo(0);
     }

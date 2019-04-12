@@ -45,7 +45,7 @@ public class MoviesTest extends BaseTestCase {
     private void assertMovieNotNull(Movie movie) {
         assertThat(movie.getTitle()).isNotEmpty();
         assertThat(movie.getIds()).isNotNull();
-        assertThat(movie.getIds().trakt).isNotNull();
+        assertThat(movie.getIds().getTrakt()).isNotNull();
         assertThat(movie.getYear()).isNotNull();
     }
 
@@ -67,10 +67,10 @@ public class MoviesTest extends BaseTestCase {
         assertThat(movie.getIds()).isNotNull();
         assertThat(movie.getTitle()).isEqualTo(TestData.MOVIE_TITLE);
         assertThat(movie.getYear()).isEqualTo(TestData.MOVIE_YEAR);
-        assertThat(movie.getIds().trakt).isEqualTo(TestData.MOVIE_TRAKT_ID);
-        assertThat(movie.getIds().slug).isEqualTo(TestData.MOVIE_SLUG);
-        assertThat(movie.getIds().imdb).isEqualTo(TestData.MOVIE_IMDB_ID);
-        assertThat(movie.getIds().tmdb).isEqualTo(TestData.MOVIE_TMDB_ID);
+        assertThat(movie.getIds().getTrakt()).isEqualTo(TestData.MOVIE_TRAKT_ID);
+        assertThat(movie.getIds().getSlug()).isEqualTo(TestData.MOVIE_SLUG);
+        assertThat(movie.getIds().getImdb()).isEqualTo(TestData.MOVIE_IMDB_ID);
+        assertThat(movie.getIds().getTmdb()).isEqualTo(TestData.MOVIE_TMDB_ID);
     }
 
     @Test

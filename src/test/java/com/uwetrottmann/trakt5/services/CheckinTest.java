@@ -82,13 +82,13 @@ public class CheckinTest extends BaseTestCase {
         assertThat(response.getWatched_at().isBefore(OffsetDateTime.now().plusHours(1))).isTrue();
         assertThat(response.getEpisode()).isNotNull();
         assertThat(response.getEpisode().getIds()).isNotNull();
-        assertThat(response.getEpisode().getIds().trakt).isEqualTo(TestData.EPISODE_TRAKT_ID);
-        assertThat(response.getEpisode().getIds().tvdb).isEqualTo(TestData.EPISODE_TVDB_ID);
+        assertThat(response.getEpisode().getIds().getTrakt()).isEqualTo(TestData.EPISODE_TRAKT_ID);
+        assertThat(response.getEpisode().getIds().getTvdb()).isEqualTo(TestData.EPISODE_TVDB_ID);
         assertThat(response.getShow()).isNotNull();
     }
 
     private static EpisodeCheckin buildEpisodeCheckin() {
-        return new EpisodeCheckin.Builder(new SyncEpisode().id(EpisodeIds.tvdb(TestData.EPISODE_TVDB_ID)), APP_VERSION,
+        return new EpisodeCheckin.Builder(new SyncEpisode().id(EpisodeIds.Companion.tvdb(TestData.EPISODE_TVDB_ID)), APP_VERSION,
                 APP_DATE)
                 .message("This is a toasty episode!")
                 .build();
@@ -121,7 +121,7 @@ public class CheckinTest extends BaseTestCase {
     private MovieCheckin buildMovieCheckin() {
         ShareSettings shareSettings = new ShareSettings();
         shareSettings.facebook = true;
-        return new MovieCheckin.Builder(new SyncMovie().id(MovieIds.trakt(TestData.MOVIE_TRAKT_ID)), APP_VERSION,
+        return new MovieCheckin.Builder(new SyncMovie().id(MovieIds.Companion.trakt(TestData.MOVIE_TRAKT_ID)), APP_VERSION,
                 APP_DATE)
                 .message("This is a toasty movie!")
                 .sharing(shareSettings)

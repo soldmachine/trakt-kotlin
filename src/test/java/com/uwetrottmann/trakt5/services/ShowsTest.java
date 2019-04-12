@@ -47,7 +47,7 @@ public class ShowsTest extends BaseTestCase {
     private void assertShowNotNull(Show show) {
         assertThat(show.getTitle()).isNotEmpty();
         assertThat(show.getIds()).isNotNull();
-        assertThat(show.getIds().trakt).isNotNull();
+        assertThat(show.getIds().getTrakt()).isNotNull();
         assertThat(show.getYear()).isNotNull();
     }
 
@@ -69,12 +69,12 @@ public class ShowsTest extends BaseTestCase {
         assertThat(show.getTitle()).isEqualTo(TestData.SHOW_TITLE);
         assertThat(show.getYear()).isEqualTo(TestData.SHOW_YEAR);
         assertThat(show.getIds()).isNotNull();
-        assertThat(show.getIds().trakt).isEqualTo(TestData.SHOW_TRAKT_ID);
-        assertThat(show.getIds().slug).isEqualTo(TestData.SHOW_SLUG);
-        assertThat(show.getIds().imdb).isEqualTo(TestData.SHOW_IMDB_ID);
-        assertThat(show.getIds().tmdb).isEqualTo(TestData.SHOW_TMDB_ID);
-        assertThat(show.getIds().tvdb).isEqualTo(TestData.SHOW_TVDB_ID);
-        assertThat(show.getIds().tvrage).isEqualTo(TestData.SHOW_TVRAGE_ID);
+        assertThat(show.getIds().getTrakt()).isEqualTo(TestData.SHOW_TRAKT_ID);
+        assertThat(show.getIds().getSlug()).isEqualTo(TestData.SHOW_SLUG);
+        assertThat(show.getIds().getImdb()).isEqualTo(TestData.SHOW_IMDB_ID);
+        assertThat(show.getIds().getTmdb()).isEqualTo(TestData.SHOW_TMDB_ID);
+        assertThat(show.getIds().getTvdb()).isEqualTo(TestData.SHOW_TVDB_ID);
+        assertThat(show.getIds().getTvrage()).isEqualTo(TestData.SHOW_TVRAGE_ID);
     }
 
     @Test
@@ -174,8 +174,8 @@ public class ShowsTest extends BaseTestCase {
 
         // episode 1 should always be watched
         BaseEpisode episode = season.episodes.get(0);
-        assertThat(episode.number).isEqualTo(1);
-        assertThat(episode.completed).isTrue();
+        assertThat(episode.getNumber()).isEqualTo(1);
+        assertThat(episode.getCompleted()).isTrue();
     }
 
 }

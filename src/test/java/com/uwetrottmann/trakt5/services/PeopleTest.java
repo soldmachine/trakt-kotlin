@@ -21,8 +21,8 @@ public class PeopleTest extends BaseTestCase {
         assertThat(person).isNotNull();
         assertThat(person.name).isNotEmpty();
         assertThat(person.ids).isNotNull();
-        assertThat(person.ids.trakt).isNotNull();
-        assertThat(person.ids.slug).isNotNull();
+        assertThat(person.ids.getTrakt()).isNotNull();
+        assertThat(person.ids.getSlug()).isNotNull();
     }
 
     @Test

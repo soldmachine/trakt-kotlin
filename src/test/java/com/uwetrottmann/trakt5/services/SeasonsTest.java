@@ -52,9 +52,9 @@ public class SeasonsTest extends BaseTestCase {
                 assertThat(firstEp.getTitle()).isEqualTo(TestData.EPISODE_TITLE);
                 assertThat(firstEp.getSeason()).isEqualTo(TestData.EPISODE_SEASON);
                 assertThat(firstEp.getNumber()).isEqualTo(TestData.EPISODE_NUMBER);
-                assertThat(firstEp.getIds().imdb).isEqualTo(TestData.EPISODE_IMDB_ID);
-                assertThat(firstEp.getIds().tmdb).isEqualTo(TestData.EPISODE_TMDB_ID);
-                assertThat(firstEp.getIds().tvdb).isEqualTo(TestData.EPISODE_TVDB_ID);
+                assertThat(firstEp.getIds().getImdb()).isEqualTo(TestData.EPISODE_IMDB_ID);
+                assertThat(firstEp.getIds().getTmdb()).isEqualTo(TestData.EPISODE_TMDB_ID);
+                assertThat(firstEp.getIds().getTvdb()).isEqualTo(TestData.EPISODE_TVDB_ID);
                 assertThat(firstEp.getOverview()).isNotEmpty();
             }
         }

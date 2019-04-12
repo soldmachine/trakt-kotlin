@@ -92,7 +92,7 @@ public class CommentsTest extends BaseTestCase {
 
     private static Episode buildTestEpisode() {
         Episode episode = new Episode();
-        episode.setIds(EpisodeIds.tvdb(TestData.EPISODE_TVDB_ID));
+        episode.setIds(EpisodeIds.Companion.tvdb(TestData.EPISODE_TVDB_ID));
         return episode;
     }
 }

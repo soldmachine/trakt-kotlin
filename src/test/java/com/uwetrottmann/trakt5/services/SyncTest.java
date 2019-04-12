@@ -108,7 +108,7 @@ public class SyncTest extends BaseTestCase {
 
         // show
         SyncShow show = new SyncShow();
-        show.ids = ShowIds.slug("community");
+        show.ids = ShowIds.Companion.slug("community");
         show.seasons = new ArrayList<>();
         show.seasons.add(season);
 
@@ -137,7 +137,7 @@ public class SyncTest extends BaseTestCase {
 
         // show
         SyncShow show = new SyncShow();
-        show.ids = ShowIds.tvdb(TestData.SHOW_TVDB_ID);
+        show.ids = ShowIds.Companion.tvdb(TestData.SHOW_TVDB_ID);
         show.seasons = new ArrayList<>();
         show.seasons.add(season);
 
@@ -188,7 +188,7 @@ public class SyncTest extends BaseTestCase {
         season.episodes.add(episode2);
 
         SyncShow show = new SyncShow();
-        show.ids = ShowIds.tvdb(TestData.SHOW_TVDB_ID);
+        show.ids = ShowIds.Companion.tvdb(TestData.SHOW_TVDB_ID);
         show.seasons = new ArrayList<>();
         show.seasons.add(season);
 
@@ -229,7 +229,7 @@ public class SyncTest extends BaseTestCase {
         season.episodes.add(episode2);
         // show
         SyncShow show = new SyncShow();
-        show.ids = ShowIds.tvdb(TestData.SHOW_TVDB_ID);
+        show.ids = ShowIds.Companion.tvdb(TestData.SHOW_TVDB_ID);
         show.seasons = new ArrayList<>();
         show.seasons.add(season);
 
@@ -299,7 +299,7 @@ public class SyncTest extends BaseTestCase {
     @Test
     public void test_addRatings_movie() throws IOException {
         SyncMovie movie = new SyncMovie()
-                .id(MovieIds.slug(TestData.MOVIE_SLUG))
+                .id(MovieIds.Companion.slug(TestData.MOVIE_SLUG))
                 .rating(Rating.MEH);
 
         SyncItems items = new SyncItems().movies(movie);
@@ -309,7 +309,7 @@ public class SyncTest extends BaseTestCase {
     @Test
     public void test_addRatings_show() throws IOException {
         SyncShow show = new SyncShow()
-                .id(ShowIds.slug(TestData.SHOW_SLUG))
+                .id(ShowIds.Companion.slug(TestData.SHOW_SLUG))
                 .rating(Rating.TERRIBLE);
 
         SyncItems items = new SyncItems().shows(show);
@@ -323,7 +323,7 @@ public class SyncTest extends BaseTestCase {
                 .rating(Rating.FAIR);
 
         SyncShow show = new SyncShow()
-                .id(ShowIds.slug("community"))
+                .id(ShowIds.Companion.slug("community"))
                 .seasons(season);
 
         SyncItems items = new SyncItems().shows(show);
@@ -348,7 +348,7 @@ public class SyncTest extends BaseTestCase {
                 .episodes(episodes);
 
         SyncShow show = new SyncShow()
-                .id(ShowIds.slug(TestData.SHOW_SLUG))
+                .id(ShowIds.Companion.slug(TestData.SHOW_SLUG))
                 .seasons(season);
 
         SyncItems items = new SyncItems().shows(show);
@@ -434,7 +434,7 @@ public class SyncTest extends BaseTestCase {
 
         // show
         SyncShow show = new SyncShow();
-        show.ids = ShowIds.slug("community");
+        show.ids = ShowIds.Companion.slug("community");
         show.seasons = new ArrayList<>();
         show.seasons.add(season);
 
@@ -457,7 +457,7 @@ public class SyncTest extends BaseTestCase {
         season.episodes.add(episode2);
         // show
         SyncShow show = new SyncShow();
-        show.ids = ShowIds.tvdb(TestData.SHOW_TVDB_ID);
+        show.ids = ShowIds.Companion.tvdb(TestData.SHOW_TVDB_ID);
         show.seasons = new ArrayList<>();
         show.seasons.add(season);
 
@@ -479,11 +479,11 @@ public class SyncTest extends BaseTestCase {
 
 
     private MovieIds buildMovieIds() {
-        return MovieIds.tmdb(TestData.MOVIE_TMDB_ID);
+        return MovieIds.Companion.tmdb(TestData.MOVIE_TMDB_ID);
     }
 
     private ShowIds buildShowIds() {
-        return ShowIds.slug("the-walking-dead");
+        return ShowIds.Companion.slug("the-walking-dead");
     }
 
 }

@@ -171,13 +171,13 @@ public class BaseTestCase {
             for (BaseSeason season : show.seasons) {
                 assertThat(season.number).isGreaterThanOrEqualTo(0);
                 for (BaseEpisode episode : season.episodes) {
-                    assertThat(episode.number).isGreaterThanOrEqualTo(0);
+                    assertThat(episode.getNumber()).isGreaterThanOrEqualTo(0);
 
                     if ("collection".equals(type)) {
-                        assertThat(episode.collected_at).isNotNull();
+                        assertThat(episode.getCollected_at()).isNotNull();
                     } else if ("watched".equals(type)) {
-                        assertThat(episode.plays).isPositive();
-                        assertThat(episode.last_watched_at).isNotNull();
+                        assertThat(episode.getPlays()).isPositive();
+                        assertThat(episode.getLast_watched_at()).isNotNull();
                     }
                 }
             }
