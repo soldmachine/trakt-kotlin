@@ -12,21 +12,21 @@ interface Authentication {
     @FormUrlEncoded
     @POST(TraktV2.OAUTH2_TOKEN_URL)
     fun exchangeCodeForAccessToken(
-            @Field("grant_type") grantType: String,
-            @Field("code") code: String,
-            @Field("client_id") clientId: String,
-            @Field("client_secret") clientSecret: String,
-            @Field("redirect_uri") redirectUri: String
+        @Field("grant_type") grantType: String,
+        @Field("code") code: String,
+        @Field("client_id") clientId: String,
+        @Field("client_secret") clientSecret: String,
+        @Field("redirect_uri") redirectUri: String
     ): Call<AccessToken>
 
     @FormUrlEncoded
     @POST(TraktV2.OAUTH2_TOKEN_URL)
     fun refreshAccessToken(
-            @Field("grant_type") grantType: String,
-            @Field("refresh_token") refreshToken: String,
-            @Field("client_id") clientId: String,
-            @Field("client_secret") clientSecret: String,
-            @Field("redirect_uri") redirectUri: String
+        @Field("grant_type") grantType: String,
+        @Field("refresh_token") refreshToken: String,
+        @Field("client_id") clientId: String,
+        @Field("client_secret") clientSecret: String,
+        @Field("redirect_uri") redirectUri: String
     ): Call<AccessToken>
 
 }
