@@ -27,13 +27,13 @@ public class CommentsTest extends BaseTestCase {
 
         // update the new comment
         Comment updatedComment = new Comment("This is toasty! I was just updated.", false, false);
-        commentResponse = executeCall(getTrakt().comments().update(commentResponse.id, updatedComment));
+        commentResponse = executeCall(getTrakt().comments().update(commentResponse.getId(), updatedComment));
         assertCommentResponse(updatedComment, commentResponse);
         // give the server some time to handle the data
         Thread.sleep(3000);
 
         // delete the comment again
-        Response response = getTrakt().comments().delete(commentResponse.id).execute();
+        Response response = getTrakt().comments().delete(commentResponse.getId()).execute();
         assertSuccessfulResponse(response);
         assertThat(response.code()).isEqualTo(HttpURLConnection.HTTP_NO_CONTENT);
     }
@@ -48,7 +48,7 @@ public class CommentsTest extends BaseTestCase {
         Thread.sleep(3000);
 
         // delete the comment again
-        Response response = getTrakt().comments().delete(commentResponse.id).execute();
+        Response response = getTrakt().comments().delete(commentResponse.getId()).execute();
         assertSuccessfulResponse(response);
         assertThat(response.code()).isEqualTo(HttpURLConnection.HTTP_NO_CONTENT);
     }
@@ -64,30 +64,30 @@ public class CommentsTest extends BaseTestCase {
 
         // post a reply to the new comment
         Comment expectedReply = new Comment("This is a reply to the toasty comment!", false, false);
-        Comment actualReply = executeCall(getTrakt().comments().postReply(response.id, expectedReply));
+        Comment actualReply = executeCall(getTrakt().comments().postReply(response.getId(), expectedReply));
         assertCommentResponse(expectedReply, actualReply);
 
         // give the server some time to handle the data
         Thread.sleep(3000);
 
         // look if the comment replies include our new reply
-        List<Comment> replies = executeCall(getTrakt().comments().replies(response.id));
+        List<Comment> replies = executeCall(getTrakt().comments().replies(response.getId()));
         for (Comment reply : replies) {
-            if (reply.id.equals(actualReply.id)) {
+            if (reply.getId().equals(actualReply.getId())) {
                 assertCommentResponse(actualReply, reply);
             }
         }
 
         // delete the comment and replies (does this work?)
-        Response deleteResponse = getTrakt().comments().delete(response.id).execute();
+        Response deleteResponse = getTrakt().comments().delete(response.getId()).execute();
         assertSuccessfulResponse(deleteResponse);
         assertThat(deleteResponse.code()).isEqualTo(HttpURLConnection.HTTP_NO_CONTENT);
     }
 
     private static void assertCommentResponse(Comment expected, Comment actual) {
-        assertThat(actual.comment).isEqualTo(expected.comment);
-        assertThat(actual.spoiler).isEqualTo(expected.spoiler);
-        assertThat(actual.review).isEqualTo(expected.review);
+        assertThat(actual.getComment()).isEqualTo(expected.getComment());
+        assertThat(actual.getSpoiler()).isEqualTo(expected.getSpoiler());
+        assertThat(actual.getReview()).isEqualTo(expected.getReview());
     }
 
     private static Episode buildTestEpisode() {

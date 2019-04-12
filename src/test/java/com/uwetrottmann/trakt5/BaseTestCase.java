@@ -185,33 +185,33 @@ public class BaseTestCase {
     }
 
     public void assertCast(Credits credits, Type type) {
-        for (CastMember castMember : credits.cast) {
-            assertThat(castMember.character).isNotNull();
+        for (CastMember castMember : credits.getCast()) {
+            assertThat(castMember.getCharacter()).isNotNull();
             if (type == Type.SHOW) {
-                assertThat(castMember.movie).isNull();
-                assertThat(castMember.show).isNotNull();
-                assertThat(castMember.person).isNull();
+                assertThat(castMember.getMovie()).isNull();
+                assertThat(castMember.getShow()).isNotNull();
+                assertThat(castMember.getPerson()).isNull();
             } else if (type == Type.MOVIE) {
-                assertThat(castMember.movie).isNotNull();
-                assertThat(castMember.show).isNull();
-                assertThat(castMember.person).isNull();
+                assertThat(castMember.getMovie()).isNotNull();
+                assertThat(castMember.getShow()).isNull();
+                assertThat(castMember.getPerson()).isNull();
             } else if (type == Type.PERSON) {
-                assertThat(castMember.movie).isNull();
-                assertThat(castMember.show).isNull();
-                assertThat(castMember.person).isNotNull();
+                assertThat(castMember.getMovie()).isNull();
+                assertThat(castMember.getShow()).isNull();
+                assertThat(castMember.getPerson()).isNotNull();
             }
         }
     }
 
     public void assertCrew(Credits credits, Type type) {
-        if (credits.crew != null) {
-            assertCrewMembers(credits.crew.production, type);
-            assertCrewMembers(credits.crew.writing, type);
-            assertCrewMembers(credits.crew.directing, type);
-            assertCrewMembers(credits.crew.costumeAndMakeUp, type);
-            assertCrewMembers(credits.crew.sound, type);
-            assertCrewMembers(credits.crew.art, type);
-            assertCrewMembers(credits.crew.camera, type);
+        if (credits.getCrew() != null) {
+            assertCrewMembers(credits.getCrew().getProduction(), type);
+            assertCrewMembers(credits.getCrew().getWriting(), type);
+            assertCrewMembers(credits.getCrew().getDirecting(), type);
+            assertCrewMembers(credits.getCrew().getCostumeAndMakeUp(), type);
+            assertCrewMembers(credits.getCrew().getSound(), type);
+            assertCrewMembers(credits.getCrew().getArt(), type);
+            assertCrewMembers(credits.getCrew().getCamera(), type);
         }
     }
 
@@ -220,19 +220,19 @@ public class BaseTestCase {
             return;
         }
         for (CrewMember crewMember : crew) {
-            assertThat(crewMember.job).isNotNull(); // may be empty, so not checking for now
+            assertThat(crewMember.getJob()).isNotNull(); // may be empty, so not checking for now
             if (type == Type.SHOW) {
-                assertThat(crewMember.movie).isNull();
-                assertThat(crewMember.show).isNotNull();
-                assertThat(crewMember.person).isNull();
+                assertThat(crewMember.getMovie()).isNull();
+                assertThat(crewMember.getShow()).isNotNull();
+                assertThat(crewMember.getPerson()).isNull();
             } else if (type == Type.MOVIE) {
-                assertThat(crewMember.movie).isNotNull();
-                assertThat(crewMember.show).isNull();
-                assertThat(crewMember.person).isNull();
+                assertThat(crewMember.getMovie()).isNotNull();
+                assertThat(crewMember.getShow()).isNull();
+                assertThat(crewMember.getPerson()).isNull();
             } else if (type == Type.PERSON) {
-                assertThat(crewMember.movie).isNull();
-                assertThat(crewMember.show).isNull();
-                assertThat(crewMember.person).isNotNull();
+                assertThat(crewMember.getMovie()).isNull();
+                assertThat(crewMember.getShow()).isNull();
+                assertThat(crewMember.getPerson()).isNotNull();
             }
         }
     }

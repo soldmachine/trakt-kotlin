@@ -98,16 +98,16 @@ public class CalendarsTest extends BaseTestCase {
 
     private void assertShowCalendar(List<CalendarShowEntry> shows) {
         for (CalendarShowEntry entry : shows) {
-            assertThat(entry.first_aired).isNotNull();
-            assertThat(entry.episode).isNotNull();
-            assertThat(entry.show).isNotNull();
+            assertThat(entry.getFirst_aired()).isNotNull();
+            assertThat(entry.getEpisode()).isNotNull();
+            assertThat(entry.getShow()).isNotNull();
         }
     }
 
     private void assertMovieCalendar(List<CalendarMovieEntry> movies) {
         for (CalendarMovieEntry entry : movies) {
-            assertThat(entry.released).isNotNull();
-            assertThat(entry.movie).isNotNull();
+            assertThat(entry.getReleased()).isNotNull();
+            assertThat(entry.getMovie()).isNotNull();
         }
     }
 
