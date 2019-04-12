@@ -20,14 +20,14 @@ public class EpisodesTest extends BaseTestCase {
                 TestData.EPISODE_SEASON,
                 TestData.EPISODE_NUMBER, Extended.FULL));
         assertThat(episode).isNotNull();
-        assertThat(episode.title).isEqualTo(TestData.EPISODE_TITLE);
-        assertThat(episode.season).isEqualTo(TestData.EPISODE_SEASON);
-        assertThat(episode.number).isEqualTo(TestData.EPISODE_NUMBER);
-        assertThat(episode.ids.imdb).isEqualTo(TestData.EPISODE_IMDB_ID);
-        assertThat(episode.ids.tmdb).isEqualTo(TestData.EPISODE_TMDB_ID);
-        assertThat(episode.ids.tvdb).isEqualTo(TestData.EPISODE_TVDB_ID);
-        assertThat(episode.runtime).isGreaterThan(0);
-        assertThat(episode.comment_count).isGreaterThanOrEqualTo(0);
+        assertThat(episode.getTitle()).isEqualTo(TestData.EPISODE_TITLE);
+        assertThat(episode.getSeason()).isEqualTo(TestData.EPISODE_SEASON);
+        assertThat(episode.getNumber()).isEqualTo(TestData.EPISODE_NUMBER);
+        assertThat(episode.getIds().imdb).isEqualTo(TestData.EPISODE_IMDB_ID);
+        assertThat(episode.getIds().tmdb).isEqualTo(TestData.EPISODE_TMDB_ID);
+        assertThat(episode.getIds().tvdb).isEqualTo(TestData.EPISODE_TVDB_ID);
+        assertThat(episode.getRuntime()).isGreaterThan(0);
+        assertThat(episode.getComment_count()).isGreaterThanOrEqualTo(0);
     }
 
     @Test

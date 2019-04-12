@@ -45,10 +45,10 @@ public class ShowsTest extends BaseTestCase {
     }
 
     private void assertShowNotNull(Show show) {
-        assertThat(show.title).isNotEmpty();
-        assertThat(show.ids).isNotNull();
-        assertThat(show.ids.trakt).isNotNull();
-        assertThat(show.year).isNotNull();
+        assertThat(show.getTitle()).isNotEmpty();
+        assertThat(show.getIds()).isNotNull();
+        assertThat(show.getIds().trakt).isNotNull();
+        assertThat(show.getYear()).isNotNull();
     }
 
     @Test
@@ -66,15 +66,15 @@ public class ShowsTest extends BaseTestCase {
 
     private void assertTestShow(Show show) {
         assertThat(show).isNotNull();
-        assertThat(show.title).isEqualTo(TestData.SHOW_TITLE);
-        assertThat(show.year).isEqualTo(TestData.SHOW_YEAR);
-        assertThat(show.ids).isNotNull();
-        assertThat(show.ids.trakt).isEqualTo(TestData.SHOW_TRAKT_ID);
-        assertThat(show.ids.slug).isEqualTo(TestData.SHOW_SLUG);
-        assertThat(show.ids.imdb).isEqualTo(TestData.SHOW_IMDB_ID);
-        assertThat(show.ids.tmdb).isEqualTo(TestData.SHOW_TMDB_ID);
-        assertThat(show.ids.tvdb).isEqualTo(TestData.SHOW_TVDB_ID);
-        assertThat(show.ids.tvrage).isEqualTo(TestData.SHOW_TVRAGE_ID);
+        assertThat(show.getTitle()).isEqualTo(TestData.SHOW_TITLE);
+        assertThat(show.getYear()).isEqualTo(TestData.SHOW_YEAR);
+        assertThat(show.getIds()).isNotNull();
+        assertThat(show.getIds().trakt).isEqualTo(TestData.SHOW_TRAKT_ID);
+        assertThat(show.getIds().slug).isEqualTo(TestData.SHOW_SLUG);
+        assertThat(show.getIds().imdb).isEqualTo(TestData.SHOW_IMDB_ID);
+        assertThat(show.getIds().tmdb).isEqualTo(TestData.SHOW_TMDB_ID);
+        assertThat(show.getIds().tvdb).isEqualTo(TestData.SHOW_TVDB_ID);
+        assertThat(show.getIds().tvrage).isEqualTo(TestData.SHOW_TVRAGE_ID);
     }
 
     @Test

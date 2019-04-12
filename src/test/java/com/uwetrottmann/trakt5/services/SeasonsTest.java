@@ -43,19 +43,19 @@ public class SeasonsTest extends BaseTestCase {
                 assertThat(season.episodes).isNotEmpty();
                 Episode firstEp = null;
                 for (Episode episode : season.episodes) {
-                    if (episode.number == TestData.EPISODE_NUMBER) {
+                    if (episode.getNumber() == TestData.EPISODE_NUMBER) {
                         firstEp = episode;
                         break;
                     }
                 }
                 assertThat(firstEp).isNotNull();
-                assertThat(firstEp.title).isEqualTo(TestData.EPISODE_TITLE);
-                assertThat(firstEp.season).isEqualTo(TestData.EPISODE_SEASON);
-                assertThat(firstEp.number).isEqualTo(TestData.EPISODE_NUMBER);
-                assertThat(firstEp.ids.imdb).isEqualTo(TestData.EPISODE_IMDB_ID);
-                assertThat(firstEp.ids.tmdb).isEqualTo(TestData.EPISODE_TMDB_ID);
-                assertThat(firstEp.ids.tvdb).isEqualTo(TestData.EPISODE_TVDB_ID);
-                assertThat(firstEp.overview).isNotEmpty();
+                assertThat(firstEp.getTitle()).isEqualTo(TestData.EPISODE_TITLE);
+                assertThat(firstEp.getSeason()).isEqualTo(TestData.EPISODE_SEASON);
+                assertThat(firstEp.getNumber()).isEqualTo(TestData.EPISODE_NUMBER);
+                assertThat(firstEp.getIds().imdb).isEqualTo(TestData.EPISODE_IMDB_ID);
+                assertThat(firstEp.getIds().tmdb).isEqualTo(TestData.EPISODE_TMDB_ID);
+                assertThat(firstEp.getIds().tvdb).isEqualTo(TestData.EPISODE_TVDB_ID);
+                assertThat(firstEp.getOverview()).isNotEmpty();
             }
         }
     }
@@ -67,7 +67,7 @@ public class SeasonsTest extends BaseTestCase {
         assertThat(season).isNotNull();
         assertThat(season).isNotEmpty();
         for (Episode episode : season) {
-            assertThat(episode.season).isEqualTo(TestData.EPISODE_SEASON);
+            assertThat(episode.getSeason()).isEqualTo(TestData.EPISODE_SEASON);
         }
     }
 
