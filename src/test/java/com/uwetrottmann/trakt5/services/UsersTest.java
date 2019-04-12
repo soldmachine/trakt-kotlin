@@ -69,7 +69,7 @@ public class UsersTest extends BaseTestCase {
         assertThat(user.vip).isEqualTo(true);
         assertThat(user.vip_ep).isEqualTo(true);
         assertThat(user.ids.slug).isEqualTo(TestData.USERNAME_STRING);
-        assertThat(user.images.avatar.full).isNotEmpty();
+        assertThat(user.images.avatar.getFull()).isNotEmpty();
     }
 
     @Test
@@ -91,7 +91,7 @@ public class UsersTest extends BaseTestCase {
         for (TraktList list : lists) {
             // ensure id and a title
             assertThat(list.ids).isNotNull();
-            assertThat(list.ids.trakt).isNotNull();
+            assertThat(list.ids.getTrakt()).isNotNull();
             assertThat(list.name).isNotEmpty();
             assertThat(list.description).isNotEmpty();
             assertThat(list.privacy).isNotNull();
@@ -119,13 +119,13 @@ public class UsersTest extends BaseTestCase {
 
         // create list...
         TraktList createdList = executeCall(getTrakt().users().createList(UserSlug.ME, list));
-        assertThat(createdList.ids.trakt).isNotNull();
+        assertThat(createdList.ids.getTrakt()).isNotNull();
         assertThat(createdList.name).isEqualTo(list.name);
         assertThat(createdList.description).isEqualTo(list.description);
 
         // ...and delete it again
         Response deleteResponse = getTrakt().users().deleteList(UserSlug.ME,
-                String.valueOf(createdList.ids.trakt)).execute();
+                String.valueOf(createdList.ids.getTrakt())).execute();
         assertSuccessfulResponse(deleteResponse);
         assertThat(deleteResponse.code()).isEqualTo(204);
     }
@@ -141,7 +141,7 @@ public class UsersTest extends BaseTestCase {
         // create list...
         TraktList updatedList = executeCall(getTrakt().users().updateList(UserSlug.ME, String.valueOf(
                 TEST_LIST_WITH_ITEMS_TRAKT_ID), list));
-        assertThat(updatedList.ids.trakt).isEqualTo(TEST_LIST_WITH_ITEMS_TRAKT_ID);
+        assertThat(updatedList.ids.getTrakt()).isEqualTo(TEST_LIST_WITH_ITEMS_TRAKT_ID);
         assertThat(updatedList.name).isEqualTo(list.name);
     }
 
@@ -151,10 +151,10 @@ public class UsersTest extends BaseTestCase {
                 String.valueOf(TEST_LIST_WITH_ITEMS_TRAKT_ID),
                 null));
         for (ListEntry entry : entries) {
-            assertThat(entry.listed_at).isNotNull();
-            assertThat(entry.id).isNotNull();
-            assertThat(entry.rank).isNotNull();
-            assertThat(entry.type).isNotNull();
+            assertThat(entry.getListed_at()).isNotNull();
+            assertThat(entry.getId()).isNotNull();
+            assertThat(entry.getRank()).isNotNull();
+            assertThat(entry.getType()).isNotNull();
         }
     }
 
@@ -197,15 +197,15 @@ public class UsersTest extends BaseTestCase {
         // reverse order
         List<Long> newRank = new ArrayList<>();
         for (int i = entries.size() - 1; i >= 0; i--) {
-            newRank.add(entries.get(i).id);
+            newRank.add(entries.get(i).getId());
         }
 
         ListReorderResponse response = executeCall(getTrakt().users().reorderListItems(
                 UserSlug.ME,
                 String.valueOf(TEST_LIST_WITH_ITEMS_TRAKT_ID),
-                ListItemRank.from(newRank)
+                ListItemRank.Companion.from(newRank)
         ));
-        assertThat(response.updated).isEqualTo(entries.size());
+        assertThat(response.getUpdated()).isEqualTo(entries.size());
     }
 
     @Test
@@ -221,15 +221,15 @@ public class UsersTest extends BaseTestCase {
 
         // follow again
         Followed followedResponse = executeCall(getTrakt().users().follow(userToFollow));
-        assertThat(followedResponse.user.username).isEqualTo(TestData.USER_TO_FOLLOW);
+        assertThat(followedResponse.getUser().username).isEqualTo(TestData.USER_TO_FOLLOW);
     }
 
     @Test
     public void test_followers() throws IOException {
         List<Follower> followers = executeCall(getTrakt().users().followers(TestData.USER_SLUG, null));
         for (Follower follower : followers) {
-            assertThat(follower.followed_at).isNotNull();
-            assertThat(follower.user).isNotNull();
+            assertThat(follower.getFollowed_at()).isNotNull();
+            assertThat(follower.getUser()).isNotNull();
         }
     }
 
@@ -237,8 +237,8 @@ public class UsersTest extends BaseTestCase {
     public void test_following() throws IOException {
         List<Follower> following = executeCall(getTrakt().users().following(TestData.USER_SLUG, null));
         for (Follower follower : following) {
-            assertThat(follower.followed_at).isNotNull();
-            assertThat(follower.user).isNotNull();
+            assertThat(follower.getFollowed_at()).isNotNull();
+            assertThat(follower.getUser()).isNotNull();
         }
     }
 
@@ -246,8 +246,8 @@ public class UsersTest extends BaseTestCase {
     public void test_friends() throws IOException {
         List<Friend> friends = executeCall(getTrakt().users().friends(TestData.USER_SLUG, null));
         for (Friend friend : friends) {
-            assertThat(friend.friends_at).isNotNull();
-            assertThat(friend.user).isNotNull();
+            assertThat(friend.getFriends_at()).isNotNull();
+            assertThat(friend.getUser()).isNotNull();
         }
     }
 
@@ -258,15 +258,15 @@ public class UsersTest extends BaseTestCase {
                         DEFAULT_PAGE_SIZE, null,
                         null, null));
         for (HistoryEntry entry : history) {
-            assertThat(entry.id).isGreaterThan(0);
-            assertThat(entry.watched_at).isNotNull();
-            assertThat(entry.action).isNotEmpty();
-            assertThat(entry.type).isNotEmpty();
-            if ("episode".equals(entry.type)) {
-                assertThat(entry.episode).isNotNull();
-                assertThat(entry.show).isNotNull();
-            } else if ("movie".equals(entry.type)) {
-                assertThat(entry.movie).isNotNull();
+            assertThat(entry.getId()).isGreaterThan(0);
+            assertThat(entry.getWatched_at()).isNotNull();
+            assertThat(entry.getAction()).isNotEmpty();
+            assertThat(entry.getType()).isNotEmpty();
+            if ("episode".equals(entry.getType())) {
+                assertThat(entry.getEpisode()).isNotNull();
+                assertThat(entry.getShow()).isNotNull();
+            } else if ("movie".equals(entry.getType())) {
+                assertThat(entry.getMovie()).isNotNull();
             }
         }
     }
@@ -278,14 +278,14 @@ public class UsersTest extends BaseTestCase {
                         DEFAULT_PAGE_SIZE, null,
                         null, null));
         for (HistoryEntry entry : history) {
-            assertThat(entry.id).isGreaterThan(0);
-            assertThat(entry.watched_at).isNotNull();
-            assertThat(entry.action).isNotEmpty();
-            assertThat(entry.type).isEqualTo("episode");
-            assertThat(entry.episode).isNotNull();
-            assertThat(entry.show).isNotNull();
+            assertThat(entry.getId()).isGreaterThan(0);
+            assertThat(entry.getWatched_at()).isNotNull();
+            assertThat(entry.getAction()).isNotEmpty();
+            assertThat(entry.getType()).isEqualTo("episode");
+            assertThat(entry.getEpisode()).isNotNull();
+            assertThat(entry.getShow()).isNotNull();
             System.out.println(
-                    "Episode watched at date: " + entry.watched_at + entry.watched_at.toInstant().toEpochMilli());
+                    "Episode watched at date: " + entry.getWatched_at() + entry.getWatched_at().toInstant().toEpochMilli());
         }
     }
 
@@ -311,10 +311,10 @@ public class UsersTest extends BaseTestCase {
 
     private void assertMovieHistory(List<HistoryEntry> history) {
         for (HistoryEntry entry : history) {
-            assertThat(entry.watched_at).isNotNull();
-            assertThat(entry.action).isNotEmpty();
-            assertThat(entry.type).isEqualTo("movie");
-            assertThat(entry.movie).isNotNull();
+            assertThat(entry.getWatched_at()).isNotNull();
+            assertThat(entry.getAction()).isNotEmpty();
+            assertThat(entry.getType()).isEqualTo("movie");
+            assertThat(entry.getMovie()).isNotNull();
         }
     }
 

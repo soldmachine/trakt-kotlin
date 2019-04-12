@@ -25,8 +25,8 @@ public class GenresTest extends BaseTestCase {
 
     private void assertGenres(List<Genre> genres) {
         for (Genre genre : genres) {
-            assertThat(genre.name).isNotEmpty();
-            assertThat(genre.slug).isNotEmpty();
+            assertThat(genre.getName()).isNotEmpty();
+            assertThat(genre.getSlug()).isNotEmpty();
         }
     }
 

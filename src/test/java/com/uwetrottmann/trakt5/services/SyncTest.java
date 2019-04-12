@@ -41,33 +41,33 @@ public class SyncTest extends BaseTestCase {
     public void test_lastActivites() throws IOException {
         LastActivities lastActivities = executeCall(getTrakt().sync().lastActivities());
         assertThat(lastActivities).isNotNull();
-        assertThat(lastActivities.all).isNotNull();
-        assertLastActivityMore(lastActivities.movies);
-        assertLastActivityMore(lastActivities.episodes);
-        assertLastActivity(lastActivities.shows);
-        assertLastActivity(lastActivities.seasons);
-        assertListsLastActivity(lastActivities.lists);
+        assertThat(lastActivities.getAll()).isNotNull();
+        assertLastActivityMore(lastActivities.getMovies());
+        assertLastActivityMore(lastActivities.getEpisodes());
+        assertLastActivity(lastActivities.getShows());
+        assertLastActivity(lastActivities.getSeasons());
+        assertListsLastActivity(lastActivities.getLists());
     }
 
     private void assertLastActivityMore(LastActivityMore activityMore) {
         assertLastActivity(activityMore);
-        assertThat(activityMore.paused_at).isNotNull();
-        assertThat(activityMore.collected_at).isNotNull();
-        assertThat(activityMore.watched_at).isNotNull();
+        assertThat(activityMore.getPaused_at()).isNotNull();
+        assertThat(activityMore.getCollected_at()).isNotNull();
+        assertThat(activityMore.getWatched_at()).isNotNull();
     }
 
     private void assertLastActivity(LastActivity activity) {
         assertThat(activity).isNotNull();
-        assertThat(activity.commented_at).isNotNull();
-        assertThat(activity.rated_at).isNotNull();
-        assertThat(activity.watchlisted_at).isNotNull();
+        assertThat(activity.getCommented_at()).isNotNull();
+        assertThat(activity.getRated_at()).isNotNull();
+        assertThat(activity.getWatchlisted_at()).isNotNull();
     }
 
     private void assertListsLastActivity(ListsLastActivity activity) {
         assertThat(activity).isNotNull();
-        assertThat(activity.commented_at).isNotNull();
-        assertThat(activity.liked_at).isNotNull();
-        assertThat(activity.updated_at).isNotNull();
+        assertThat(activity.getCommented_at()).isNotNull();
+        assertThat(activity.getLiked_at()).isNotNull();
+        assertThat(activity.getUpdated_at()).isNotNull();
     }
 
     @Test
