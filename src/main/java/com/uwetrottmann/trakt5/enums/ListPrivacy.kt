@@ -23,7 +23,7 @@ enum class ListPrivacy constructor(val value: String) : TraktEnum {
         }
 
         fun fromValue(value: String): ListPrivacy {
-            return STRING_MAPPING[value] ?: throw IllegalStateException("No Mapping found!")
+            return STRING_MAPPING[value] ?: PRIVATE
         }
     }
 }

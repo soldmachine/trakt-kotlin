@@ -22,7 +22,7 @@ enum class SortHow constructor(private val value: String) : TraktEnum {
         }
 
         fun fromValue(value: String): SortHow {
-            return STRING_MAPPING[value.toUpperCase(Locale.ROOT)] ?: throw IllegalStateException("No Mapping found!")
+            return STRING_MAPPING[value.toUpperCase(Locale.ROOT)] ?: ASC
         }
     }
 

@@ -25,7 +25,7 @@ enum class Status constructor(private val value: String) : TraktEnum {
         }
 
         fun fromValue(value: String): Status {
-            return STRING_MAPPING[value.toUpperCase(Locale.ROOT)] ?: throw IllegalStateException("No Mapping found!")
+            return STRING_MAPPING[value.toUpperCase(Locale.ROOT)] ?: ENDED
         }
     }
 

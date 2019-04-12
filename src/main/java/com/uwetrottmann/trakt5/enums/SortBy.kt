@@ -31,7 +31,7 @@ enum class SortBy constructor(private val value: String) : TraktEnum {
         }
 
         fun fromValue(value: String): SortBy {
-            return STRING_MAPPING[value.toUpperCase(Locale.ROOT)] ?: throw IllegalStateException("No Mapping found!")
+            return STRING_MAPPING[value.toUpperCase(Locale.ROOT)] ?: RANDOM
         }
     }
 
