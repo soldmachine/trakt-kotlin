@@ -332,8 +332,8 @@ public class UsersTest extends BaseTestCase {
                 RatingsFilter.TOTALLYNINJA,
                 null));
         for (RatedMovie movie : ratedMovies) {
-            assertThat(movie.rated_at).isNotNull();
-            assertThat(movie.rating).isEqualTo(Rating.TOTALLYNINJA);
+            assertThat(movie.getRated_at()).isNotNull();
+            assertThat(movie.getRating()).isEqualTo(Rating.TOTALLYNINJA);
         }
     }
 
@@ -373,8 +373,8 @@ public class UsersTest extends BaseTestCase {
         List<BaseShow> shows = executeCall(getTrakt().users().watchlistShows(UserSlug.ME,
                 null));
         for (BaseShow show : shows) {
-            assertThat(show.show).isNotNull();
-            assertThat(show.listed_at).isNotNull();
+            assertThat(show.getShow()).isNotNull();
+            assertThat(show.getListed_at()).isNotNull();
         }
     }
 

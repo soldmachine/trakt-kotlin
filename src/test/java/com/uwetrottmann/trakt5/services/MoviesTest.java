@@ -37,8 +37,8 @@ public class MoviesTest extends BaseTestCase {
         assertThat(movies).isNotNull();
         assertThat(movies.size()).isLessThanOrEqualTo(DEFAULT_PAGE_SIZE);
         for (TrendingMovie movie : movies) {
-            assertThat(movie.watchers).isNotNull();
-            assertMovieNotNull(movie.movie);
+            assertThat(movie.getWatchers()).isNotNull();
+            assertMovieNotNull(movie.getMovie());
         }
     }
 

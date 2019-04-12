@@ -39,8 +39,8 @@ public class ShowsTest extends BaseTestCase {
         assertThat(shows).isNotNull();
         assertThat(shows.size()).isLessThanOrEqualTo(DEFAULT_PAGE_SIZE);
         for (TrendingShow show : shows) {
-            assertThat(show.watchers).isNotNull();
-            assertShowNotNull(show.show);
+            assertThat(show.getWatchers()).isNotNull();
+            assertShowNotNull(show.getShow());
         }
     }
 
@@ -148,32 +148,32 @@ public class ShowsTest extends BaseTestCase {
 
     private void assertCollectedProgress(BaseShow show) {
         assertThat(show).isNotNull();
-        assertThat(show.last_collected_at).isNotNull();
+        assertThat(show.getLast_collected_at()).isNotNull();
         assertProgress(show);
     }
 
     private void assertWatchedProgress(BaseShow show) {
         assertThat(show).isNotNull();
-        assertThat(show.last_watched_at).isNotNull();
+        assertThat(show.getLast_watched_at()).isNotNull();
         assertProgress(show);
     }
 
     private void assertProgress(BaseShow show) {
-        assertThat(show.aired).isGreaterThan(30);
-        assertThat(show.completed).isGreaterThanOrEqualTo(1);
+        assertThat(show.getAired()).isGreaterThan(30);
+        assertThat(show.getCompleted()).isGreaterThanOrEqualTo(1);
 
         // Killjoys has 4 aired seasons
-        assertThat(show.seasons).hasSize(4);
+        assertThat(show.getSeasons()).hasSize(4);
 
-        BaseSeason season = show.seasons.get(0);
-        assertThat(season.number).isEqualTo(1);
+        BaseSeason season = show.getSeasons().get(0);
+        assertThat(season.getNumber()).isEqualTo(1);
         // all aired
-        assertThat(season.aired).isEqualTo(10);
+        assertThat(season.getAired()).isEqualTo(10);
         // always at least 1 watched
-        assertThat(season.completed).isGreaterThanOrEqualTo(1);
+        assertThat(season.getCompleted()).isGreaterThanOrEqualTo(1);
 
         // episode 1 should always be watched
-        BaseEpisode episode = season.episodes.get(0);
+        BaseEpisode episode = season.getEpisodes().get(0);
         assertThat(episode.getNumber()).isEqualTo(1);
         assertThat(episode.getCompleted()).isTrue();
     }

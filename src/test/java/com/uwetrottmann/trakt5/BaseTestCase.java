@@ -114,8 +114,8 @@ public class BaseTestCase {
 
     protected static <T extends BaseRatedEntity> void assertRatedEntities(List<T> ratedMovies) {
         for (BaseRatedEntity movie : ratedMovies) {
-            assertThat(movie.rated_at).isNotNull();
-            assertThat(movie.rating).isNotNull();
+            assertThat(movie.getRated_at()).isNotNull();
+            assertThat(movie.getRating()).isNotNull();
         }
     }
 
@@ -142,17 +142,17 @@ public class BaseTestCase {
 
     protected static void assertSyncMovies(List<BaseMovie> movies, String type) {
         for (BaseMovie movie : movies) {
-            assertThat(movie.movie).isNotNull();
+            assertThat(movie.getMovie()).isNotNull();
             switch (type) {
                 case "collection":
-                    assertThat(movie.collected_at).isNotNull();
+                    assertThat(movie.getCollected_at()).isNotNull();
                     break;
                 case "watched":
-                    assertThat(movie.plays).isPositive();
-                    assertThat(movie.last_watched_at).isNotNull();
+                    assertThat(movie.getPlays()).isPositive();
+                    assertThat(movie.getLast_watched_at()).isNotNull();
                     break;
                 case "watchlist":
-                    assertThat(movie.listed_at).isNotNull();
+                    assertThat(movie.getListed_at()).isNotNull();
                     break;
             }
         }
@@ -160,17 +160,17 @@ public class BaseTestCase {
 
     protected static void assertSyncShows(List<BaseShow> shows, String type) {
         for (BaseShow show : shows) {
-            assertThat(show.show).isNotNull();
+            assertThat(show.getShow()).isNotNull();
             if ("collection".equals(type)) {
-                assertThat(show.last_collected_at).isNotNull();
+                assertThat(show.getLast_collected_at()).isNotNull();
             } else if ("watched".equals(type)) {
-                assertThat(show.plays).isPositive();
-                assertThat(show.last_watched_at).isNotNull();
+                assertThat(show.getPlays()).isPositive();
+                assertThat(show.getLast_watched_at()).isNotNull();
             }
 
-            for (BaseSeason season : show.seasons) {
-                assertThat(season.number).isGreaterThanOrEqualTo(0);
-                for (BaseEpisode episode : season.episodes) {
+            for (BaseSeason season : show.getSeasons()) {
+                assertThat(season.getNumber()).isGreaterThanOrEqualTo(0);
+                for (BaseEpisode episode : season.getEpisodes()) {
                     assertThat(episode.getNumber()).isGreaterThanOrEqualTo(0);
 
                     if ("collection".equals(type)) {
