@@ -17,6 +17,9 @@ data class AccessToken(
     val refreshToken: String? = null,
 
     @SerializedName("scope")
-    val scope: String? = null
+    val scope: String? = null,
+
+    @SerializedName("created_at")
+    val createdAt: Long? = null
 
 )

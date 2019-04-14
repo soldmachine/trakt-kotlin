@@ -11,7 +11,7 @@ data class Account(
     val dateFormat: String? = null,
 
     @SerializedName("time_24hr")
-    val time24hr: Boolean? = null,
+    val time24Hr: Boolean? = null,
 
     @SerializedName("cover_image")
     val coverImage: String? = null
