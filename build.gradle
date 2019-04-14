@@ -36,3 +36,14 @@ sourceCompatibility = '1.8'
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
+
+sourceSets {
+    main.java.srcDirs += 'src/main/java/'
+    test.java.srcDirs += 'src/test/java/'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.szoldapps.trakt.TraktV2'
+    }
+}
