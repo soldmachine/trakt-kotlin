@@ -1,1 +1,1 @@
-include 'trakt-kotlin'
+rootProject.name = 'trakt-kotlin'
