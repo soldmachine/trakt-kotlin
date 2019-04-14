@@ -28,7 +28,7 @@ dependencies {
     compile 'com.google.code.findbugs:jsr305:3.0.2'
 }
 
-group = 'com.szoldapps.trakt-kotlin'
+group = 'com.github.soldmachine'
 version = '6.2.4'
 description = 'trakt-kotlin'
 sourceCompatibility = 1.8
