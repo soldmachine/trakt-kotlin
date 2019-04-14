@@ -12,19 +12,19 @@ API key (OAuth client id) and optionally a given user access token.
 
 ## Usage
 
-<a href="https://search.maven.org/search?q=g:com.uwetrottmann.trakt5">Available on Maven Central</a>
+<a href="https://search.maven.org/search?q=g:com.szoldapps.trakt">Available on Maven Central</a>
 
 Add the following dependency to your Gradle project:
 
 ```groovy
-implementation 'com.uwetrottmann.trakt5:trakt-java:6.1.0'
+implementation 'com.szoldapps.trakt:trakt-java:6.1.0'
 ```
 
 Or for Maven:
 
 ```xml
 <dependency>
-  <groupId>com.uwetrottmann.trakt5</groupId>
+  <groupId>com.szoldapps.trakt</groupId>
   <artifactId>trakt-java</artifactId>
   <version>6.1.0</version>
 </dependency>
@@ -38,7 +38,7 @@ This library depends on [threetenbp](https://github.com/ThreeTen/threetenbp). To
 dependency and include [ThreeTenABP](https://github.com/JakeWharton/ThreeTenABP) instead:
 
 ```groovy
-implementation ('com.uwetrottmann.trakt5:trakt-java:<latest-version>') {
+implementation ('com.szoldapps.trakt:trakt-java:<latest-version>') {
   exclude group: 'org.threeten', module: 'threetenbp'
 }
 implementation 'com.jakewharton.threetenabp:threetenabp:<latest-version>'
@@ -84,7 +84,7 @@ Just apply the [Proguard rules for retrofit](https://square.github.io/retrofit/#
 ## License
 Created by [Uwe Trottmann](https://uwetrottmann.com).
 
-See full [list of contributors](https://github.com/UweTrottmann/trakt-java/graphs/contributors).
+See full [list of contributors](https://github.com.szoldapps/trakt-java/graphs/contributors).
 
 Except where noted otherwise, released into the [public domain](UNLICENSE).
 Do not just copy, make it better.

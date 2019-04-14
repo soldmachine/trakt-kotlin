@@ -25,11 +25,11 @@ Setup
 This project is built with [Maven][7], see the `pom.xml` in the root folder.
 
 
- [1]: https://github.com/UweTrottmann/trakt-java/fork
+ [1]: https://github.com.szoldapps/trakt-java/fork
  [2]: http://robots.thoughtbot.com/post/48933156625/5-useful-tips-for-a-better-commit-message
- [3]: https://github.com/UweTrottmann/trakt-java/compare
- [4]: https://github.com/UweTrottmann/trakt-java/issues
- [5]: https://github.com/UweTrottmann/trakt-java/issues/new
- [6]: https://github.com/UweTrottmann/trakt-java/releases
+ [3]: https://github.com.szoldapps/trakt-java/compare
+ [4]: https://github.com.szoldapps/trakt-java/issues
+ [5]: https://github.com.szoldapps/trakt-java/issues/new
+ [6]: https://github.com.szoldapps/trakt-java/releases
  [7]: https://maven.apache.org/
  [8]: http://www.gnu.org/prep/maintain/maintain.html#Legally-Significant

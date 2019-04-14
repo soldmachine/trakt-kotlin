@@ -5,8 +5,8 @@ Change Log
 _2019-02-07_
 
 * Add `updated_at`, `likes` and `user_rating` to `Comment`. Thanks @MMauro94!
-  https://github.com/UweTrottmann/trakt-java/pull/105
-* For the `com.uwetrottmann.trakt5.entities` package return values and fields are now annotated nullable.
+  https://github.com.szoldapps/trakt-java/pull/105
+* For the `com.szoldapps.trakt.entities` package return values and fields are now annotated nullable.
 
 ## 6.0.0
 _2018-11-28_
@@ -84,7 +84,7 @@ _2017-04-06_
 * Note: to avoid [issues on Android](https://github.com/JakeWharton/ThreeTenABP#why-not-use-threetenbp) exclude the 
   ThreeTen dependency and include [ThreeTenABP](https://github.com/JakeWharton/ThreeTenABP) instead:
     ```groovy
-    compile ('com.uwetrottmann.trakt5:trakt-java:<latest-version>') {
+    compile ('com.szoldapps.trakt:trakt-java:<latest-version>') {
       exclude group: 'org.threeten', module: 'threetenbp'
     }
     compile 'com.jakewharton.threetenabp:threetenabp:<latest-version>'
@@ -106,7 +106,7 @@ _2017-01-12_
 ## 5.5.0
 _2017-01-12_
 
-* Update to new search methods [#89](https://github.com/UweTrottmann/trakt-java/issues/89).
+* Update to new search methods [#89](https://github.com.szoldapps/trakt-java/issues/89).
 * Update joda-time to 2.9.7.
 
 ## 5.4.0
@@ -145,9 +145,9 @@ _2016-07-14_
 _2016-06-09_
 
 * Update to `retrofit2`. Read about the most [notable changes and benefits](https://github.com/square/retrofit/blob/master/CHANGELOG.md#version-200-2016-03-11).
-  You will have to make changes to your app, see the [README](https://github.com/UweTrottmann/trakt-java/blob/master/README.md#usage)
+  You will have to make changes to your app, see the [README](https://github.com.szoldapps/trakt-java/blob/master/README.md#usage)
   for an example of the new code flow.
-* Package name changed to `com.uwetrottmann.trakt5`. So you can keep using the old version while updating your code.
+* Package name changed to `com.szoldapps.trakt`. So you can keep using the old version while updating your code.
 * Removed `OAuthUnauthorizedException` and `CheckinInProgressException`. You now have to handle authentication errors
   (check for `response.code() == 401`) and check-in errors (`TraktV2` now has `checkForCheckinError()`) yourself.
 * Better integrated support for handling OAuth, removing the need for a dedicated HTTP client (removed `TraktHttpClient`).
@@ -250,7 +250,7 @@ _2016-05-06_
    [users/followers](http://docs.trakt.apiary.io/#reference/users/followers/get-followers),
    [users/followed](http://docs.trakt.apiary.io/#reference/users/following/get-following),
    [users/friends](http://docs.trakt.apiary.io/#reference/users/friends/get-friends).
- * Use [new retrofit parameterized path and query annotations](https://github.com/UweTrottmann/trakt-java/issues/40).
+ * Use [new retrofit parameterized path and query annotations](https://github.com.szoldapps/trakt-java/issues/40).
  * Update dependencies.
 
 4.1.0 *(2015-01-13)*
