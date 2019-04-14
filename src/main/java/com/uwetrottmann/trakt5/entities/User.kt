@@ -12,11 +12,13 @@ data class User(
     /** If a user is a regular VIP.  */
     var vip: Boolean? = null,
     /** If a user is an execute producer.  */
-    var vip_ep: Boolean? = null,
+    @SerializedName("vip_ep")
+    var vipEp: Boolean? = null,
     var ids: UserIds? = null,
 
     // full
-    var joined_at: OffsetDateTime? = null,
+    @SerializedName("joined_at")
+    var joinedAt: OffsetDateTime? = null,
     var location: String? = null,
     var about: String? = null,
     var gender: String? = null,

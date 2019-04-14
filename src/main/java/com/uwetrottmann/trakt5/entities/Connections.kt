@@ -1,7 +1,25 @@
 package com.uwetrottmann.trakt5.entities
 
+import com.google.gson.annotations.SerializedName
+
 data class Connections(
-    var facebook: Boolean? = null,
-    var twitter: Boolean? = null,
-    var tumblr: Boolean? = null
+
+    @SerializedName("facebook")
+    val facebook: Boolean? = null,
+
+    @SerializedName("twitter")
+    val twitter: Boolean? = null,
+
+    @SerializedName("google")
+    val google: Boolean? = null,
+
+    @SerializedName("tumblr")
+    val tumblr: Boolean? = null,
+
+    @SerializedName("medium")
+    val medium: Boolean? = null,
+
+    @SerializedName("slack")
+    val slack: Boolean? = null
+
 )

@@ -43,9 +43,9 @@ class TraktV2Authenticator(val trakt: TraktV2) : Authenticator {
             }
 
             // store the new tokens
-            val accessToken = body.access_token
+            val accessToken = body.accessToken
             trakt.accessToken(accessToken)
-            trakt.refreshToken(body.refresh_token)
+            trakt.refreshToken(body.refreshToken)
 
             // retry request
             return response.request().newBuilder()

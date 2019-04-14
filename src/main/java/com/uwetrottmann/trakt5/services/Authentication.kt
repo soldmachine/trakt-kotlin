@@ -23,7 +23,7 @@ interface Authentication {
     @POST(TraktV2.OAUTH2_TOKEN_URL)
     fun refreshAccessToken(
         @Field("grant_type") grantType: String,
-        @Field("refresh_token") refreshToken: String,
+        @Field("refreshToken") refreshToken: String,
         @Field("client_id") clientId: String,
         @Field("client_secret") clientSecret: String,
         @Field("redirect_uri") redirectUri: String

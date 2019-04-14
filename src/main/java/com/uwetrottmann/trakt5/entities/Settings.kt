@@ -1,10 +1,19 @@
 package com.uwetrottmann.trakt5.entities
 
+import com.google.gson.annotations.SerializedName
+
 data class Settings(
 
-    var user: User? = null,
-    var account: Account? = null,
-    var connections: Connections? = null,
-    var sharing_text: SharingText? = null
+    @SerializedName("user")
+    val user: User? = null,
+
+    @SerializedName("account")
+    val account: Account? = null,
+
+    @SerializedName("connections")
+    val connections: Connections? = null,
+
+    @SerializedName("sharing_text")
+    val sharingText: SharingText? = null
 
 )

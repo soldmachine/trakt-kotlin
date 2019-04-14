@@ -57,7 +57,7 @@ public class UsersTest extends BaseTestCase {
         assertThat(settings.getUser()).isNotNull();
         assertThat(settings.getAccount()).isNotNull();
         assertThat(settings.getConnections()).isNotNull();
-        assertThat(settings.getSharing_text()).isNotNull();
+        assertThat(settings.getSharingText()).isNotNull();
     }
 
     @Test
@@ -67,7 +67,7 @@ public class UsersTest extends BaseTestCase {
         assertThat(user.isPrivate()).isEqualTo(false);
         assertThat(user.getName()).isEqualTo(TestData.USER_REAL_NAME);
         assertThat(user.getVip()).isEqualTo(true);
-        assertThat(user.getVip_ep()).isEqualTo(true);
+        assertThat(user.getVipEp()).isEqualTo(true);
         assertThat(user.getIds().getSlug()).isEqualTo(TestData.USERNAME_STRING);
         assertThat(user.getImages().getAvatar().getFull()).isNotEmpty();
     }
